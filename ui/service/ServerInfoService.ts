@@ -1,40 +1,43 @@
-interface ServerConnection {
+export interface ServerConnection {
     url: string;
     key?: string;
 }
 
-interface ServerInfo {
+export interface ServerInfo {
     id: string,
     name: string,
     connection: ServerConnection,
 }
 
 interface IServerInfoService {
-    get(id: string): ServerInfo;
+    get(id: string): Promise<ServerInfo>;
 
-    list(): ServerInfo[];
+    list(): Promise<ServerInfo[]>;
 
-    remove(id: string): void;
+    remove(id: string): Promise<void>;
 
-    edit(id: string, data: ServerInfo): void;
+    edit(id: string, data: ServerInfo): Promise<void>;
 }
 
-class ServerInfoService implements IServerInfoService {
+export class ServerInfoService implements IServerInfoService {
+    constructor() {
+        this.fakeData();
+    }
     private servers: ServerInfo[] = [];
 
-    get(id: string): ServerInfo {
+    async get(id: string): Promise<ServerInfo> {
         return this.servers.find(server => server.id === id);
     }
 
-    list(): ServerInfo[] {
+    async list(): Promise<ServerInfo[]> {
         return this.servers;
     }
 
-    remove(id: string): void {
+    async remove(id: string): Promise<void> {
         this.servers = this.servers.filter(server => server.id !== id);
     }
 
-    edit(id: string, data: ServerInfo): void {
+    async edit(id: string, data: ServerInfo): Promise<void> {
         const server = this.servers.find(server => server.id === id);
         if (server) {
             server.name = data.name;
@@ -44,7 +47,7 @@ class ServerInfoService implements IServerInfoService {
     fakeData() {
         this.servers = [
             {
-                id: '1',
+                id: 'waha_000000000000000000000000000',
                 name: 'Server 1',
                 connection: {
                     url: 'http://localhost:3000',
@@ -52,7 +55,7 @@ class ServerInfoService implements IServerInfoService {
                 },
             },
             {
-                id: '2',
+                id: 'waha_111111111111111111111111111',
                 name: 'Server 2',
                 connection: {
                     url: 'http://localhost:3001',
