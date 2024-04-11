@@ -1,6 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
     typescript: false,
+    devtools: {enabled: true},
     app: {
         head: {
             title: 'Sakai Vue',
