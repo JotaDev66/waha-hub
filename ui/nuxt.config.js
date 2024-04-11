@@ -2,6 +2,7 @@
 export default defineNuxtConfig({
     typescript: false,
     devtools: {enabled: true},
+    ssr: false,
     app: {
         head: {
             title: 'Sakai Vue',

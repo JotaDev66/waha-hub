@@ -26,7 +26,7 @@
         "eslint-plugin-prettier": "^4.2.1",
         "eslint-plugin-vue": "^9.4.0",
         "@babel/eslint-parser": "^7.18.9",
-        "nuxt": "3.3.3",
+        "nuxt": "^3.9.0",
         "nuxt-primevue": "^0.3.1",
         "prettier": "2.7.1",
         "sass": "^1.60.0",
