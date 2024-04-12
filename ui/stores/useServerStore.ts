@@ -11,6 +11,7 @@ export const useServerStore = defineStore('serverStore', () => {
     // TODO: implement the store
     const serverInfoService = new InMemoryServerService()
     const latestVersion = ref('2024.3.1')
+    const refreshing = ref(false)
 
     const servers = ref<ServerInfo[]>([])
     const sessions = reactive(new Map<string, Session[]>())
@@ -53,11 +54,18 @@ export const useServerStore = defineStore('serverStore', () => {
 
     async function refresh() {
         console.log('refresh')
+        refreshing.value = true
         await fetchServers()
-        const requests = servers.value.map(server => {
-            refreshServer(server.id)
-        })
-        await Promise.all(requests)
+        const requests = []
+        for (const server of servers.value) {
+            requests.push(refreshServer(server.id))
+        }
+        try {
+            await Promise.all(requests)
+        } finally {
+            refreshing.value = false
+            console.log('refresh - COMPLETED')
+        }
     }
 
     async function addServer(server: ServerInfo) {
@@ -77,7 +85,6 @@ export const useServerStore = defineStore('serverStore', () => {
     }
 
     function getServer(id: string) {
-        console.log('getServer', id)
         return servers.value.filter(server => server.id === id)?.[0]
     }
 
@@ -100,6 +107,7 @@ export const useServerStore = defineStore('serverStore', () => {
         sessions,
         allSessions,
         refresh,
+        refreshing,
         addServer,
         deleteServer,
         editServer,

@@ -1,5 +1,5 @@
 <script setup>
-import {ref, onMounted, onBeforeMount} from 'vue';
+import {ref, onBeforeMount} from 'vue';
 import {useToast} from 'primevue/usetoast';
 import {FilterMatchMode} from "primevue/api";
 import {useConfirm} from "primevue/useconfirm";
@@ -11,7 +11,7 @@ const toast = useToast();
 const confirmPopup = useConfirm();
 
 const store = useServerStore()
-const {servers} = storeToRefs(store)
+const {servers, refreshing} = storeToRefs(store)
 const server = ref({connection: {}}
 );
 const serverDialog = ref(false)
@@ -61,7 +61,7 @@ function confirmDeleteServer(event, server) {
 }
 
 function refreshServers() {
-  useAsyncData('store', () => store.refresh())
+  useAsyncData('store', async () => await store.refresh())
 }
 
 </script>
@@ -73,7 +73,7 @@ function refreshServers() {
       Servers
     </h5>
     <div>
-      <Button icon="pi pi-refresh" rounded text="" @click="refreshServers"/>
+      <RefreshButton :refreshing="refreshing" @click="refreshServers"/>
     </div>
   </div>
 
