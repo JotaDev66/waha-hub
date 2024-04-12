@@ -42,8 +42,8 @@ function hide() {
       <small class="p-invalid" v-if="submitted && !server.connection.url">URL is required.</small>
     </div>
     <div class="field">
-      <label for="name">API Key</label>
-      <Password id="name" v-model.trim="server.connection.key" :feedback="false"/>
+      <label for="connection-key">API Key (optional)</label>
+      <Password id="connection-key" v-model.trim="server.connection.key" :feedback="false"/>
     </div>
 
     <template #footer>

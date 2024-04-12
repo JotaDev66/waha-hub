@@ -103,7 +103,7 @@ function confirmDeleteServer(event, server) {
       </template>
     </Column>
 
-    <Column header="Connection">
+    <Column header="API">
       <template #body="{ data }">
         <div>
           <i class="pi"
@@ -153,8 +153,8 @@ function confirmDeleteServer(event, server) {
     </Column>
   </DataTable>
   <ServerDialog
+      v-model:visible="serverDialog"
       :server="server"
-      :visible="serverDialog"
   ></ServerDialog>
 </template>
 
