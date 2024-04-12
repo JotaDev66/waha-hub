@@ -36,10 +36,14 @@ export class InMemoryServerService implements IServerService {
     }
 
     async edit(id: string, data: ServerInfo): Promise<void> {
-        const server = this.servers.find(server => server.id === id);
-        if (server) {
-            server.name = data.name;
+        if (!data){
+            throw new Error('data is required')
         }
+        const server = this.servers.find(server => server.id === id);
+        if (!server) {
+            throw new Error(`Server '${id}' not found`);
+        }
+        this.servers[this.servers.indexOf(server)] = data;
     }
 
     async getVersion(id: string): Promise<string> {
