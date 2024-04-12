@@ -9,13 +9,18 @@ export interface ServerInfo {
     id: string,
     name: string,
     connection: ServerConnection,
-    version?: string,
+    version?: Version,
     connected?: boolean,
 }
 
 export interface CreateServerInfo {
     name: string,
     connection: ServerConnection,
+}
+
+export interface Version {
+    version: string;
+    engine: string;
 }
 
 export interface IServerService {
@@ -29,7 +34,7 @@ export interface IServerService {
 
     edit(id: string, data: ServerInfo): Promise<void>;
 
-    getVersion(id: string): Promise<String>;
+    getVersion(id: string): Promise<Version>;
 
     getSessions(id: string): Promise<Session[]>;
 }

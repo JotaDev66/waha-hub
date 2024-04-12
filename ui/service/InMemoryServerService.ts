@@ -1,4 +1,4 @@
-import type {IServerService, ServerInfo} from "./IServerService";
+import type {IServerService, ServerInfo, Version} from "./IServerService";
 import lodash from 'lodash'
 import type {Session} from "./Session";
 
@@ -46,7 +46,7 @@ export class InMemoryServerService implements IServerService {
         this.servers[this.servers.indexOf(server)] = data;
     }
 
-    async getVersion(id: string): Promise<string> {
+    async getVersion(id: string): Promise<Version> {
         const failed = id.endsWith("000");
         if (failed) {
             await sleep(3000)
@@ -54,9 +54,15 @@ export class InMemoryServerService implements IServerService {
         }
         await sleep(1000)
         if (id.endsWith("111")) {
-            return "2024.3.1";
+            return {
+                version: "2024.3.1",
+                engine: "WEBJS",
+            };
         }
-        return "1.0.0";
+        return {
+            version: "2024.3.0",
+            engine: "NOWEB",
+        }
     }
 
     async getSessions(id: string): Promise<Session[]> {

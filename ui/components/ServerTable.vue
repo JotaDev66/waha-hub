@@ -129,13 +129,20 @@ function refreshServers() {
       </template>
     </Column>
 
-    <Column field="version" header="Version">
+    <Column header="Info">
       <template #body="{ data }">
         <Skeleton v-if="data.connected === undefined" width="9rem"></Skeleton>
-        <ServerConnectionIcon v-if="data.connected===false" :connected="data.connected"></ServerConnectionIcon>
-        <code v-else>
-          {{ data.version }}
-        </code>
+        <ServerConnectionIcon v-else-if="data.connected===false" :connected="data.connected"></ServerConnectionIcon>
+        <template v-else>
+          <code>
+            {{ data.version.engine }}
+          </code>
+          <code> (</code>
+          <code :class="{'text-orange-400': data.version.version !==serverStore.latestVersion}">
+            {{ data.version.version }}
+          </code>
+          <code>)</code>
+        </template>
       </template>
     </Column>
 

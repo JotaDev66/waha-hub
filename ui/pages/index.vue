@@ -5,7 +5,7 @@ import {useServerStore} from "../stores/useServerStore";
 
 const store = useServerStore()
 const badSessions = computed(() => store.allSessions.filter(s => s.status !== "WORKING" && s.status !== "STOPPED"))
-const serversRequireUpdates = computed(() => store.servers.filter(s => s.version && s.version !== store.latestVersion))
+const serversRequireUpdates = computed(() => store.servers.filter(s => s.version && s.version.version !== store.latestVersion))
 
 
 </script>
@@ -51,7 +51,7 @@ const serversRequireUpdates = computed(() => store.servers.filter(s => s.version
           </div>
         </div>
         <template v-if="badSessions.length > 0">
-          <span class="text-orange-500 font-medium">{{ badSessions.length }}</span>
+          <span class="text-orange-400 font-medium">{{ badSessions.length }}</span>
           <span class="text-500"> requires attention</span>
         </template>
         <template v-else>
@@ -75,7 +75,7 @@ const serversRequireUpdates = computed(() => store.servers.filter(s => s.version
           </div>
         </div>
         <template v-if="serversRequireUpdates.length > 0">
-          <span class="text-orange-500 font-medium">{{ serversRequireUpdates.length }}</span>
+          <span class="text-orange-400 font-medium">{{ serversRequireUpdates.length }}</span>
           <span class="text-500"> require updates</span>
         </template>
         <template v-else>
