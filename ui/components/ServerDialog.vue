@@ -9,10 +9,19 @@ const toast = useToast();
 const serverStore = useServerStore()
 
 const submitted = ref(false);
+const validConnectionUrl = computed(
+    () => {
+      const url = server.value.connection?.url
+      if (!url) return false
+      return url.startsWith("http://") || url.startsWith("https://")
+    })
 
 
 async function saveServer() {
   submitted.value = true;
+  if (!server.value.name || !validConnectionUrl.value) {
+    return
+  }
 
   if (server.value.id) {
     await serverStore.editServer(server.value.id, server.value)
@@ -44,8 +53,9 @@ function hide() {
     <div class="field">
       <label for="connection-url">API URL</label>
       <InputText id="connection-url" v-model.trim="server.connection.url" required="true"
-                 :invalid="submitted && !server.connection.url"/>
+                 :invalid="submitted && !validConnectionUrl"/>
       <small class="p-invalid" v-if="submitted && !server.connection.url">URL is required.</small>
+      <small class="p-invalid" v-if="submitted && !validConnectionUrl">URL is not correct.</small>
     </div>
     <div class="field">
       <label for="connection-key">API Key (optional)</label>
