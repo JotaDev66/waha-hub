@@ -4,7 +4,7 @@ const icon = computed(() => props.refreshing ? 'pi pi-refresh pi-spin' : 'pi pi-
 </script>
 
 <template>
-  <Button :icon="icon" rounded text="" :disabled="refreshing"/>
+  <Button v-if="refreshing" :icon="icon" rounded text="" :disabled="refreshing"/>
 </template>
 
 <style scoped lang="scss">
