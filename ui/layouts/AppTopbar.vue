@@ -66,6 +66,7 @@ const isOutsideClicked = (event) => {
 function refreshServers() {
   useAsyncData('store', async () => await store.refresh())
 }
+
 const {refreshing} = storeToRefs(store)
 </script>
 
@@ -86,6 +87,9 @@ const {refreshing} = storeToRefs(store)
     </button>
 
     <div class="layout-topbar-menu" :class="topbarMenuClasses">
+      <div class="m-auto">
+        <RefreshIcon :refreshing="refreshing"/>
+      </div>
       <button @click="refreshServers" class="p-link layout-topbar-button" :disabled="refreshing">
         <i class="pi pi-refresh"></i>
         <span>Refresh</span>
