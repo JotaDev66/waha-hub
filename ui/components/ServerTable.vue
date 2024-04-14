@@ -67,14 +67,14 @@ function refreshServers() {
 </script>
 
 <template>
-  <div class="flex justify-content-between align-items-center mb-2">
-    <h5 class="m-0">
+  <div class="flex justify-content-between align-items-center">
+    <h5>
       <i class="pi pi-server"></i>
+      <span class="mr-1">
       Servers
+      </span>
+      <RefreshIcon :refreshing="refreshing"/>
     </h5>
-    <div>
-      <RefreshButton :refreshing="refreshing" @click="refreshServers"/>
-    </div>
   </div>
 
   <DataTable

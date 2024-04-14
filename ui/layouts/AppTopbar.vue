@@ -67,7 +67,6 @@ function refreshServers() {
   useAsyncData('store', async () => await store.refresh())
 }
 const {refreshing} = storeToRefs(store)
-const refreshClasses = computed(() => refreshing.value ? 'pi pi-refresh pi-spin' : 'pi pi-refresh')
 </script>
 
 <template>
@@ -88,7 +87,7 @@ const refreshClasses = computed(() => refreshing.value ? 'pi pi-refresh pi-spin'
 
     <div class="layout-topbar-menu" :class="topbarMenuClasses">
       <button @click="refreshServers" class="p-link layout-topbar-button" :disabled="refreshing">
-        <i :class="refreshClasses"></i>
+        <i class="pi pi-refresh"></i>
         <span>Refresh</span>
       </button>
       <button @click="onTopBarMenuButton()" class="p-link layout-topbar-button">

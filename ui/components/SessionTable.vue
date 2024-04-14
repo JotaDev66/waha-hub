@@ -77,11 +77,11 @@ function clearFilter() {
   <div class="flex justify-content-between align-items-center mb-2">
     <h5 class="m-0">
       <i class="pi pi-whatsapp"></i>
+      <span>
       Sessions
+      </span>
+      <RefreshIcon :refreshing="refreshing"/>
     </h5>
-    <div>
-      <RefreshButton :refreshing="refreshing" @click="refreshServers"/>
-    </div>
   </div>
 
   <DataTable
