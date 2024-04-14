@@ -14,9 +14,7 @@ const serversRequireUpdates = computed(() => store.servers.filter(s => s.version
 const badSessions = computed(() => store.allSessions.filter(s => s.status !== "WORKING" && s.status !== "STOPPED"))
 
 onBeforeMount(() => {
-  useAsyncData('store', () =>
-      store.refresh()
-  )
+  store.refresh()
 });
 </script>
 

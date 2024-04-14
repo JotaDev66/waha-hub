@@ -1,11 +1,10 @@
 <script setup>
 import {onBeforeMount} from "vue";
-import {useAsyncData} from "nuxt/app";
+import {useServerStore} from "../stores/useServerStore";
 
+const store = useServerStore()
 onBeforeMount(() => {
-  useAsyncData('store', () =>
-      store.refresh()
-  )
+  store.refresh()
 });
 </script>
 

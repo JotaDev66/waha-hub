@@ -6,11 +6,13 @@ import {useConfirm} from "primevue/useconfirm";
 import {useServerStore} from "../stores/useServerStore";
 import lodash from "lodash";
 import {useAsyncData} from "nuxt/app";
+import {useRouter} from "vue-router";
 
 const toast = useToast();
 const confirmPopup = useConfirm();
-
+const router = useRouter();
 const store = useServerStore()
+
 const {servers, refreshing} = storeToRefs(store)
 const server = ref({connection: {}}
 );
@@ -39,7 +41,7 @@ function openNew() {
 }
 
 function rowClick(event) {
-  toast.add({severity: 'info', summary: 'Server Selected', detail: event.data.name, life: 3000});
+  router.push('/sessions');
 }
 
 function editServer(selected) {
@@ -87,8 +89,6 @@ function refreshServers() {
       :filters="filters"
       :globalFilterFields="['name', 'id', 'connection.url']"
       showGridlines
-      @row-click="rowClick"
-      class="p-datatable--clickable"
   >
 
     <template #header>
