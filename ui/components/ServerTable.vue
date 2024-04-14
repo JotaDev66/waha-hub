@@ -70,7 +70,7 @@ function refreshServers() {
   <h5>
     <i class="pi pi-server"></i>
     <span class="mr-1">
-      Servers
+      Workers
       </span>
     <RefreshIcon :refreshing="refreshing"/>
   </h5>
