@@ -35,10 +35,6 @@ const events = [
       />
     </div>
 
-    <div class="field">
-      <label for="hmac">HMAC Key (optional)</label>
-      <InputText id="hmac" v-model.trim="webhook.hmac.key"/>
-    </div>
     <div>
       <div class="font-bold mb-2">Retries</div>
       <div class="flex gap-3">
@@ -79,6 +75,11 @@ const events = [
           </InputNumber>
         </div>
       </div>
+    </div>
+
+    <div class="field">
+      <label for="hmac">HMAC Key (optional)</label>
+      <InputText id="hmac" v-model.trim="webhook.hmac.key"/>
     </div>
 
     <Button
