@@ -48,6 +48,7 @@ function hide() {
           v-model="session.server"
           :showClear="false"
           :required="true"
+          :invalid="submitted && !session.server"
       ></ServerDropdown>
       <small class="p-invalid" v-if="submitted && !session.server">Server is required.</small>
     </div>

@@ -2,9 +2,14 @@
 import {useServerStore} from "../stores/useServerStore";
 
 const server = defineModel("server");
-const showClear = defineProps("showClear");
-const placeholder = defineProps("placeholder");
-const required = defineProps("required");
+defineProps(
+    {
+      showClear: Boolean,
+      placeholder: String,
+      required: Boolean,
+      invalid: Boolean,
+    }
+);
 
 const store = useServerStore()
 
@@ -19,6 +24,7 @@ const store = useServerStore()
       class="p-column-filter"
       :showClear="showClear"
       :required="required"
+      :invalid="invalid"
   >
     <template #value="slotProps">
       <template v-if="slotProps.value">
