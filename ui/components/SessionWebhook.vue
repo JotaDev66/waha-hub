@@ -18,7 +18,7 @@ const events = [
 </script>
 
 <template>
-  <Fieldset :legend="webhook.url" toggleable>
+  <Fieldset :legend="webhook.url" toggleable >
     <div class="field">
       <label for="url">URL</label>
       <InputText id="url" v-model.trim="webhook.url" required="true" autofocus/>
@@ -34,6 +34,14 @@ const events = [
           class="w-25rem"
       />
     </div>
+
+    <Button
+        label="Remove Webhook"
+        icon="pi pi-trash"
+        text=""
+        @click="$emit('remove')"
+        severity="warning"
+    />
   </Fieldset>
 </template>
 

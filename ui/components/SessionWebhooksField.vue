@@ -7,6 +7,9 @@ function add() {
     events: ["session.status", "message", "message.reaction"],
   })
 }
+function remove(index){
+  webhooks.value.splice(index, 1)
+}
 </script>
 
 <template>
@@ -14,7 +17,15 @@ function add() {
     <div>
       <label>Webhooks</label>
     </div>
-    <Button label="Add Webhook" icon="pi pi-plus" text="" @click="add" severity="secondary"/>
+    <div>
+      <Button
+          label="Add Webhook"
+          icon="pi pi-plus"
+          text=""
+          @click="add"
+          severity="secondary"
+      />
+    </div>
 
     <template v-if="webhooks.length === 0">
       <div class="text-300 text-center">
@@ -23,9 +34,10 @@ function add() {
     </template>
     <template v-else>
       <SessionWebhook
-          class="mb-2"
           v-for="(webhook, index) in webhooks"
-          v-model:webhook="webhooks[index]"></SessionWebhook>
+          v-model:webhook="webhooks[index]"
+          @remove="remove(index)"
+      ></SessionWebhook>
     </template>
 
   </div>
