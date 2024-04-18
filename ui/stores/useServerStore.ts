@@ -1,16 +1,20 @@
 import {defineStore} from 'pinia'
 import {ref, reactive} from "vue"
 import type {IServerAPI, ServerInfo} from "../service/IServerAPI";
-import {InMemoryServerAPI} from "../service/InMemoryServerAPI";
+import {InMemoryServerAPI} from "../service/inmemory/InMemoryServerAPI";
 import type {Session} from "../service/Session";
 import {computed} from "../.nuxt/imports";
 // @ts-ignore
 import lodash from "lodash";
+import {InMemoryRPCApi} from "../service/inmemory/InMemoryRPCApi";
+import {ServerRPCService} from "../service/ServerRPCService";
 
 
 export const useServerStore = defineStore('serverStore', () => {
-    // TODO: implement the store
-    const serverInfoService: IServerAPI = new InMemoryServerAPI()
+    const serverInfoAPI: IServerAPI = new InMemoryServerAPI()
+    const rpcApi = new InMemoryRPCApi()
+
+    const serverRPCService = new ServerRPCService(rpcApi)
     const latestVersion = ref('2024.3.1')
     const refreshing = ref(false)
 
@@ -19,7 +23,7 @@ export const useServerStore = defineStore('serverStore', () => {
 
     async function fetchServers() {
         console.log('fetchServers')
-        const data = await serverInfoService.list()
+        const data = await serverInfoAPI.list()
         servers.value = data.map(server => reactive(server))
     }
 
@@ -45,12 +49,12 @@ export const useServerStore = defineStore('serverStore', () => {
 
     async function fetchSessions(id: string) {
         console.log('fetchSessions', id)
-        sessions.set(id, await serverInfoService.getSessions(id))
+        sessions.set(id, await serverRPCService.getSessions(id))
     }
 
     async function fetchVersion(server: ServerInfo) {
         console.log('fetchVersion', server.id)
-        server.version = await serverInfoService.getVersion(server.id)
+        server.version = await serverInfoAPI.getVersion(server.id)
     }
 
     async function refresh() {
@@ -70,18 +74,18 @@ export const useServerStore = defineStore('serverStore', () => {
     }
 
     async function addServer(server: ServerInfo) {
-        await serverInfoService.add(server)
+        await serverInfoAPI.add(server)
         await refresh()
     }
 
     async function deleteServer(id: string) {
-        await serverInfoService.remove(id)
+        await serverInfoAPI.remove(id)
         sessions.delete(id)
         await refresh()
     }
 
     async function editServer(id: string, server: ServerInfo) {
-        await serverInfoService.edit(id, server)
+        await serverInfoAPI.edit(id, server)
         await refresh()
     }
 

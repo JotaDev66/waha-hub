@@ -37,6 +37,4 @@ export interface IServerAPI {
     edit(id: ServerId, data: ServerInfo): Promise<void>;
 
     getVersion(id: ServerId): Promise<Version>;
-
-    getSessions(id: ServerId): Promise<Session[]>;
 }
