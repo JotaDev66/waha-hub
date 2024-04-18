@@ -24,32 +24,6 @@ onBeforeMount(() => {
       <div class="card mb-0">
         <div class="flex justify-content-between mb-3">
           <div>
-            <span class="block text-900 font-medium mb-3">Workers</span>
-            <span class="text-900 font-medium text-xl">
-              <span> {{ store.servers.length }}</span>
-            </span>
-          </div>
-          <div class="flex align-items-center justify-content-center bg-bluegray-100 border-round"
-               style="width: 2.5rem; height: 2.5rem">
-            <i class="pi pi-server text-bluegray-500 text-xl"></i>
-          </div>
-        </div>
-        <div>
-          <template v-if="notConnectedServers.length > 0">
-            <span class="text-red-500 font-medium">{{ notConnectedServers.length }}</span>
-            <span class="text-900"> not connected</span>
-            <span> / </span>
-          </template>
-          <span class="text-green-500 font-medium">{{ connectedServers.length }}</span>
-          <span class="text-500"> connected</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-12 lg:col-6 xl:col-4">
-      <div class="card mb-0">
-        <div class="flex justify-content-between mb-3">
-          <div>
             <span class="block text-900 font-medium mb-3">Sessions</span>
             <div class="text-900 font-medium text-xl">{{ store.allSessions.length }}</div>
           </div>
@@ -68,6 +42,33 @@ onBeforeMount(() => {
         </template>
       </div>
     </div>
+
+    <div class="col-12 lg:col-6 xl:col-4">
+      <div class="card mb-0">
+        <div class="flex justify-content-between mb-3">
+          <div>
+            <span class="block text-900 font-medium mb-3">Workers</span>
+            <span class="text-900 font-medium text-xl">
+              <span> {{ store.servers.length }}</span>
+            </span>
+          </div>
+          <div class="flex align-items-center justify-content-center bg-purple-100 border-round"
+               style="width: 2.5rem; height: 2.5rem">
+            <i class="pi pi-server text-purple-500 text-xl"></i>
+          </div>
+        </div>
+        <div>
+          <template v-if="notConnectedServers.length > 0">
+            <span class="text-red-500 font-medium">{{ notConnectedServers.length }}</span>
+            <span class="text-900"> not connected</span>
+            <span> / </span>
+          </template>
+          <span class="text-green-500 font-medium">{{ connectedServers.length }}</span>
+          <span class="text-500"> connected</span>
+        </div>
+      </div>
+    </div>
+
     <div class="col-12 lg:col-6 xl:col-4">
       <div class="card mb-0">
         <div class="flex justify-content-between mb-3">
