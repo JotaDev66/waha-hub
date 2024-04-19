@@ -80,6 +80,7 @@ function openNew() {
 
 function showSessionConfig(selected) {
   session.value = {
+    name: selected.name,
     server: selected.server.id,
     config: selected.config,
   };
@@ -89,6 +90,7 @@ function showSessionConfig(selected) {
 
 function startSession(selected) {
   session.value = {
+    name: selected.name,
     server: selected.server.id,
     config: selected.config,
   };

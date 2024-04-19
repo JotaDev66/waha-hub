@@ -30,7 +30,7 @@ const events = [
       />
     </div>
 
-    <div class="field">
+    <div class="field mb-4">
       <label for="events">Events</label>
       <MultiSelect
           id="events"
@@ -41,6 +41,9 @@ const events = [
           selectedItemsLabel="{0} events selected"
           :disabled="disabled"
       />
+      <ul>
+        <li v-for="event in webhook.events" :key="event">{{ event }}</li>
+      </ul>
     </div>
 
     <div>
