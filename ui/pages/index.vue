@@ -73,10 +73,17 @@ onBeforeMount(() => {
       <div class="card mb-0">
         <div class="flex justify-content-between mb-3">
           <div>
-            <span class="block text-900 font-medium mb-3">Latest Version</span>
+            <span class="block text-900 font-medium mb-3">
+                Latest Version
+            </span>
             <div>
               <Skeleton v-if="!store.latestVersion" width="4rem"></Skeleton>
-              <span v-else class="text-900 font-medium text-xl">{{ store.latestVersion }}</span>
+              <span v-else class="text-900 font-medium text-xl">
+              <a href="https://github.com/devlikeapro/whatsapp-http-api-plus/releases" target="_blank">
+                {{ store.latestVersion }}
+                <i class="pi pi-external-link"></i>
+              </a>
+              </span>
             </div>
           </div>
           <div class="flex align-items-center justify-content-center bg-cyan-100 border-round"
