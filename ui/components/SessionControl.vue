@@ -60,10 +60,8 @@ response.value = JSON.stringify(exampleResponse, null, 2)
         <SplitterPanel :size="30">
           <div class="px-4 py-3">
             <div class="flex justify-content-center align-items-center">
-              <h5>Info</h5>
-            </div>
-            <div>
               <SessionChip
+                  v-if="session.me"
                   :session="session"
                   image="/demo/images/avatar/amyelsner.png"
               >
