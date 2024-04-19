@@ -28,6 +28,8 @@ export class InMemoryRPCApi implements RPCApiClient {
             return this.stopSession(serverId, request.body.session, request.params.logout);
         } else if (request.uri === '/api/sessions/logout' && request.method === 'POST') {
             return this.logoutSession(serverId, request.body.session);
+        } else {
+            throw new Error(`Unknown request ${request.method} ${request.uri}`)
         }
     }
 

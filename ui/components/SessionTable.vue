@@ -80,16 +80,36 @@ function editSession(selected) {
   session.value = lodash.cloneDeep(selected);
   sessionDialog.value = true;
 }
-
-function confirmDeleteSession(event, session) {
-  console.log(session)
+function confirmStopSession(event, session){
   confirmPopup.require({
     target: event.target,
-    message: `Logout from session '${session.name}'?`,
+    message: `Stop '${session.name}' session?\n`,
     icon: 'pi pi-exclamation-triangle',
+    rejectClass: 'p-button-secondary p-button-outlined p-button-sm',
+    acceptClass: 'p-button-danger p-button-sm',
+    rejectLabel: 'No',
+    acceptLabel: 'Yes, Stop',
+    accept: async () => {
+      await store.stopSession(session.server.id, session.name, false)
+      toast.add({severity: 'success', summary: 'Stopped', detail: '', life: 3000});
+    },
+    reject: () => {
+    }
+  });
+}
+
+function confirmLogoutSession(event, session) {
+  confirmPopup.require({
+    target: event.target,
+    message: `Logout '${session.name}' session?\n`,
+    icon: 'pi pi-exclamation-triangle',
+    rejectClass: 'p-button-secondary p-button-outlined p-button-sm',
+    acceptClass: 'p-button-danger p-button-sm',
+    rejectLabel: 'No',
+    acceptLabel: 'Yes, Logout',
     accept: async () => {
       await store.logoutSession(session.server.id, session.name)
-      toast.add({severity: 'success', summary: 'Done', detail: '', life: 3000});
+      toast.add({severity: 'success', summary: 'Logged out', detail: '', life: 3000});
     },
     reject: () => {
     }
@@ -210,10 +230,10 @@ function rowClick(event) {
     <Column>
       <template #body="{data}">
         <div class="text-right">
+          <Button icon="pi pi-cog" class="mr-2" severity="secondary" rounded outlined @click="editSession(data)"/>
           <Button icon="pi pi-play" class="mr-2" rounded outlined @click="editSession(data)"/>
-          <Button icon="pi pi-pause" class="mr-2" severity="secondary" rounded outlined @click="editSession(data)"/>
-          <Button icon="pi pi-stop" class="mt-2" severity="danger" rounded outlined
-                  @click="confirmDeleteSession($event, data)"/>
+          <Button icon="pi pi-pause" class="mr-2" severity="secondary" rounded outlined @click="confirmStopSession($event, data)"/>
+          <Button icon="pi pi-stop" class="mt-2" severity="danger" rounded outlined @click="confirmLogoutSession($event, data)"/>
         </div>
       </template>
     </Column>

@@ -46,7 +46,7 @@ export class ServerRPCService {
     stopSession(serverId: ServerId, sessionName: string, logout: boolean): Promise<void> {
         return this.api.call(serverId, {
             method: 'POST',
-            uri: `/api/sessions/`,
+            uri: `/api/sessions/stop`,
             params: {},
             body: {
                 logout: logout,
