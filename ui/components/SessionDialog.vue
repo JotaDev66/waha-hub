@@ -52,6 +52,10 @@ function hide() {
   visible.value = false;
 }
 
+const canNotStartSession = computed(() => {
+  return modeStart.value && (!['STOPPED', 'FAILED'].includes(session.status))
+})
+
 </script>
 
 <template>
@@ -123,10 +127,7 @@ function hide() {
     <template #footer>
       <div class="w-full flex flex-column gap-2">
         <div>
-          <InlineMessage
-              severity="warn"
-              v-if="modeStart && (!['STOPPED', 'FAILED'].includes(session.status))"
-          >
+          <InlineMessage severity="warn" v-if="canNotStartSession">
             The session is in '<b>{{ session.status }}'</b> status!
             If you want to change config - please stop it first and run again.
           </InlineMessage>
@@ -140,12 +141,12 @@ function hide() {
               text=""
               @click="saveSession"
               :loading="loading"
+              :disabled="canNotStartSession"
           />
         </div>
       </div>
     </template>
   </Dialog>
-
 </template>
 
 <style scoped lang="scss">
