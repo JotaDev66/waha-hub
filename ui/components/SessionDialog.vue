@@ -65,6 +65,11 @@ function hide() {
     <template #header v-if="!modeNew">
       <SessionHeader :session="session"></SessionHeader>
     </template>
+    <div class="mb-2">
+      <InlineMessage severity="info" v-if="modeStart">
+        To change the server or name - please logout from the session and run again.
+      </InlineMessage>
+    </div>
 
     <div class="field">
       <label for="server">Server</label>
