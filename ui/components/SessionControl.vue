@@ -68,9 +68,10 @@ response.value = JSON.stringify(exampleResponse, null, 2)
         <SplitterPanel :size="50">
           <div class="px-4 py-3">
             <div class="flex justify-content-center align-items-center">
-              <h5 class="m-0">Info</h5>
+              <h5 class="m-0">Information</h5>
             </div>
             <div>
+
             </div>
           </div>
         </SplitterPanel>

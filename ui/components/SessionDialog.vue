@@ -53,7 +53,7 @@ function hide() {
 }
 
 const canNotStartSession = computed(() => {
-  return modeStart.value && (!['STOPPED', 'FAILED'].includes(session.status))
+  return modeStart.value && (!['STOPPED', 'FAILED'].includes(session.value.status))
 })
 
 </script>
