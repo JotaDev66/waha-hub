@@ -31,22 +31,18 @@ async function copyRequest(event) {
 const methods = ['GET', 'POST', 'PUT', 'DELETE', "PATCH"]
 
 const exampleResponse = {
-  "id": 1,
-  "name": "Session 1",
-  "status": "RUNNING",
-  "server": {
-    "id": 1,
-    "name": "Server 1",
-    "connection": {
-      "url": "http://localhost:8080"
-    }
-  }
+  "id": "false_11111111111@c.us_AAAAAAAAAAAAAAAAAAAA",
+  "timestamp": 1666943582,
+  "from": "11111111111@c.us",
+  "fromMe": true,
+  "to": "11111111111@c.us",
+  "participant": "string",
 }
 response.value = JSON.stringify(exampleResponse, null, 2)
 </script>
 
 <template>
-  <Splitter style="min-height: 75%" class="mb-5">
+  <Splitter>
     <SplitterPanel :size="50">
       <Splitter layout="vertical">
         <SplitterPanel :size="30">
@@ -71,10 +67,8 @@ response.value = JSON.stringify(exampleResponse, null, 2)
                   @click="refreshScreenshot"
               ></RefreshButton>
             </div>
-            <div>
-              <img src="/demo/images/nature/nature9.jpg" alt="Nature 9"
-                   style=" width:100%; height:100%"
-              />
+            <div class="flex justify-content-center align-items-center">
+              <img src="/demo/images/nature/nature9.jpg" alt="Nature 9"/>
             </div>
           </div>
         </SplitterPanel>
