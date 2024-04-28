@@ -5,7 +5,7 @@ import {random} from "lodash";
 import {IWahaAPIClient} from "../../waha/IWahaAPIClient";
 import {HTTPRequest} from "../../waha/HTTPRequest";
 
-export class WahaAPIClientMock implements IWahaAPIClient {
+export class WahaAPIMockClient implements IWahaAPIClient {
     private sessions = new Map<ServerId, Session[]>()
 
     async call(serverId: ServerId, request: HTTPRequest): Promise<any> {

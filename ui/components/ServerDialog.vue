@@ -59,7 +59,7 @@ function hide() {
     </div>
     <div class="field">
       <label for="connection-key">API Key (optional)</label>
-      <Password id="connection-key" v-model.trim="server.connection.key" :feedback="false"/>
+      <Password id="connection-key" v-model.trim="server.connection.key" :feedback="false" toggleMask/>
     </div>
 
     <template #footer>

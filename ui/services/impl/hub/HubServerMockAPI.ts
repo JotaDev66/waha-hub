@@ -4,7 +4,7 @@ import type {Session, SessionStatus} from "../../waha/dtos";
 import lodash from 'lodash'
 import {sleep} from "../../utils";
 
-export class HubServerAPIMock implements IHubServerAPI {
+export class HubServerMockAPI implements IHubServerAPI {
     constructor() {
         this.fakeData();
     }

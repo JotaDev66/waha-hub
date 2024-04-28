@@ -6,14 +6,15 @@ import {computed} from "../.nuxt/imports";
 // @ts-ignore
 import lodash from "lodash";
 import {WahaAPI} from "../services/waha/WahaAPI";
-import {HubServerAPIMock} from "../services/impl/hub/HubServerAPIMock";
-import {WahaAPIClientMock} from "../services/impl/waha/WahaAPIClientMock";
+import {HubServerMockAPI} from "../services/impl/hub/HubServerMockAPI";
+import {WahaAPIMockClient} from "../services/impl/waha/WahaAPIMockClient";
 import {WahaGlobalVersionAPI} from "../services/WahaGlobalVersionAPI";
+import {HubServerLocalAPI} from "../services/impl/hub/HubServerLocalAPI";
 
 
 export const useServerStore = defineStore('serverStore', () => {
-    const hubServerAPI: IHubServerAPI = new HubServerAPIMock()
-    const serverAPIClient = new WahaAPIClientMock()
+    const hubServerAPI: IHubServerAPI = new HubServerLocalAPI()
+    const serverAPIClient = new WahaAPIMockClient()
 
     const serverAPI = new WahaAPI(serverAPIClient)
     const latestVersion = ref(undefined)
