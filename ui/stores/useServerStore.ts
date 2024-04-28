@@ -1,13 +1,11 @@
 import {defineStore} from 'pinia'
-import {ref, reactive} from "vue"
+import {reactive, ref} from "vue"
 import type {IHubServerAPI, ServerId, ServerInfo} from "../services/hub/IHubServerAPI";
 import type {Session, SessionStartRequest} from "../services/waha/dtos";
 import {computed} from "../.nuxt/imports";
 // @ts-ignore
 import lodash from "lodash";
 import {WahaAPI} from "../services/waha/WahaAPI";
-import {HubServerMockAPI} from "../services/impl/hub/HubServerMockAPI";
-import {WahaAPIMockClient} from "../services/impl/waha/WahaAPIMockClient";
 import {WahaGlobalVersionAPI} from "../services/WahaGlobalVersionAPI";
 import {HubServerLocalAPI} from "../services/impl/hub/HubServerLocalAPI";
 import {WahaAPIDirectClient} from "../services/impl/waha/WahaAPIDirectClient";
@@ -126,6 +124,14 @@ export const useServerStore = defineStore('serverStore', () => {
         refresh()
     }
 
+    async function getScreenshot(serverId: ServerId, sessionName: string): Promise<string> {
+        return wahaAPI.getScreenshot(serverId, sessionName)
+    }
+
+    async function getProfilePicture(serverId: ServerId, sessionName: string, contactId: string): Promise<string> {
+        return wahaAPI.getProfilePicture(serverId, sessionName, contactId)
+    }
+
     const allSessions = computed(() => {
             const result = new Array<Session>()
             sessions.forEach((value, key) => {
@@ -154,6 +160,8 @@ export const useServerStore = defineStore('serverStore', () => {
         startSession,
         stopSession,
         logoutSession,
+        getScreenshot,
+        getProfilePicture,
         latestVersion,
     }
 })

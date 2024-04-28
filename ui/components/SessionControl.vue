@@ -3,6 +3,7 @@ import {computed} from "vue";
 import {useToast} from "primevue/usetoast";
 import {useServerStore} from "../stores/useServerStore";
 
+const store = useServerStore()
 const props = defineProps(['session'])
 const toast = useToast();
 const refreshScreenshot = () => {
@@ -11,6 +12,7 @@ const refreshScreenshot = () => {
 const response = ref(null)
 const requestMethod = ref('POST')
 const requestEndpoint = ref('/api/sendText')
+const profilePicture = ref(null)
 const requestExample = {
   "chatId": "11111111111@c.us",
   "text": "Hi there!",
@@ -35,6 +37,13 @@ async function copyRequest(event) {
   await navigator.clipboard.writeText(JSON.stringify(rpcRequest.value, null, 2));
   event.preventDefault();
 }
+
+if (props.session?.me?.id) {
+  store.getProfilePicture(props.session.server.id, props.session.name, props.session.me.id).then((data) => {
+    profilePicture.value = data.profilePictureURL
+  })
+}
+
 
 const methods = ['GET', 'POST', 'PUT', 'DELETE', "PATCH"]
 
@@ -63,7 +72,7 @@ response.value = JSON.stringify(exampleResponse, null, 2)
               <SessionChip
                   v-if="session.me"
                   :session="session"
-                  image="/demo/images/avatar/amyelsner.png"
+                  :image="profilePicture"
               >
               </SessionChip>
             </div>
@@ -78,7 +87,7 @@ response.value = JSON.stringify(exampleResponse, null, 2)
               ></RefreshButton>
             </div>
             <div class="flex justify-content-center align-items-center">
-              <img src="/demo/images/nature/nature9.jpg" alt="Nature 9"/>
+              <img src="/demo/images/nature/nature9.jpg" alt="Screenshot"/>
             </div>
           </div>
         </SplitterPanel>

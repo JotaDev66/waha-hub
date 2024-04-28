@@ -86,6 +86,14 @@ export class WahaAPI {
         });
     }
 
+    getProfilePicture(serverId: ServerId, sessionName: string, contactId: string): Promise<string> {
+        return this.api.call(serverId, {
+            method: 'GET',
+            uri: `/api/contacts/profile-picture?`,
+            params: {session: sessionName, contactId},
+        });
+    }
+
     // @ts-ignore
     getVersion(serverId: ServerId): Promise<any> {
         return this.api.call(serverId, {
