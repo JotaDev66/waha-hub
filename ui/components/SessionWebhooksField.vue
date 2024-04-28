@@ -40,6 +40,7 @@ function remove(index) {
       <SessionWebhook
           v-for="(webhook, index) in webhooks"
           v-model:webhook="webhooks[index]"
+          :index="index"
           @remove="remove(index)"
           :disabled="disabled"
       ></SessionWebhook>

@@ -2,6 +2,7 @@
 const webhook = defineModel("webhook");
 const props = defineProps({
   disabled: Boolean,
+  index: Number,
 })
 
 const events = [
@@ -23,7 +24,7 @@ const events = [
 
 <template>
   <Accordion :activeIndex="0">
-    <AccordionTab :header="webhook.url">
+    <AccordionTab :header="`Webhook ${props.index + 1}`">
       <div class="field">
         <label for="url">URL</label>
         <InputText id="url" v-model.trim="webhook.url" required="true" autofocus
