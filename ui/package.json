@@ -20,6 +20,7 @@
         "@fortawesome/vue-fontawesome": "^3.0.6",
         "@pinia/nuxt": "^0.5.1",
         "@types/lodash": "^4.17.0",
+        "axios": "^1.6.8",
         "chart.js": "3.3.2",
         "lodash": "^4.17.21",
         "pinia": "^2.1.7",
