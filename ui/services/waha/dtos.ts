@@ -1,6 +1,23 @@
 import type {ServerInfo} from "../hub/IHubServerAPI";
 
+export interface Hmac {
+    key: string
+}
+
+export interface WebhookRetry {
+    attempts: number,
+    delaySeconds: number,
+}
+
+export interface Webhook {
+    url: string,
+    events: string[],
+    hmac?: Hmac,
+    retries?: WebhookRetry,
+}
+
 export interface SessionConfig {
+    webhooks: Webhook[];
 }
 
 export type SessionStatus = "STOPPED" | "STARTING" | "SCAN_QR_CODE" | "WORKING" | "FAILED";

@@ -19,7 +19,28 @@ export class WahaAPI {
             method: 'GET',
             uri: '/api/sessions',
             params: {all: true},
-        });
+        }).then(sessions => sessions.map(this.processSession))
+    }
+
+    processSession(session: Session) {
+        if (session.config === undefined) {
+            session.config = {webhooks: []}
+        }
+        if (session.config.webhooks === undefined) {
+            session.config.webhooks = []
+        }
+        for (const webhook of session.config.webhooks) {
+            if (webhook.retries === undefined) {
+                webhook.retries = {attempts: 15, delaySeconds: 2}
+            }
+            if (webhook.retries.attempts === undefined) {
+                webhook.retries.attempts = 15
+            }
+            if (webhook.retries.delaySeconds === undefined) {
+                webhook.retries.delaySeconds = 2
+            }
+        }
+        return session
     }
 
     startSession(serverId: ServerId, body: SessionStartRequest): Promise<void> {
