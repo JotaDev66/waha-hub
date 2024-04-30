@@ -133,6 +133,10 @@ export const useServerStore = defineStore('serverStore', () => {
         return wahaAPI.getProfilePicture(serverId, sessionName, contactId)
     }
 
+    async function callServerAPI(serverId: ServerId, request: any) {
+        return wahaAPI.call(serverId, request)
+    }
+
     const allSessions = computed(() => {
             const result = new Array<Session>()
             sessions.forEach((value, key) => {
@@ -163,6 +167,7 @@ export const useServerStore = defineStore('serverStore', () => {
         logoutSession,
         getScreenshot,
         getProfilePicture,
+        callServerAPI,
         latestVersion,
     }
 })
