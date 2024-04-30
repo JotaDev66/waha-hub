@@ -65,21 +65,17 @@ const exampleResponse =
 response.value = JSON.stringify(exampleResponse, null, 2)
 
 async function sendRequest() {
-  const data = await req(
-      store.callServerAPI(props.session.server.id, rpcRequest.value),
-      "Success",
-      "Failed",
-  )
+  const data = await store.callServerAPI(props.session.server.id, rpcRequest.value)
   response.value = JSON.stringify(data, null, 2)
 }
 </script>
 
 <template>
-  <Splitter>
-    <SplitterPanel :size="50">
-      <Splitter layout="vertical">
-        <SplitterPanel :size="30">
-          <div class="px-4 py-3">
+  <div class="grid">
+    <div class="col-12 sm:col-6 h-full">
+      <div class="grid">
+        <div class="col-12">
+          <div class="">
             <div class="flex justify-content-center align-items-center">
               <SessionChip
                   v-if="session.me"
@@ -89,9 +85,10 @@ async function sendRequest() {
               </SessionChip>
             </div>
           </div>
-        </SplitterPanel>
-        <SplitterPanel :size="70">
-          <div class="px-4 pb-4">
+        </div>
+
+        <div class="col-12">
+          <div class="">
             <div class="flex justify-content-center align-items-center">
               <h5 class="m-0">Screenshot</h5>
               <RefreshButton @click="refreshScreenshot"></RefreshButton>
@@ -103,14 +100,15 @@ async function sendRequest() {
               ></SessionScreenshot>
             </div>
           </div>
-        </SplitterPanel>
-      </Splitter>
-    </SplitterPanel>
+        </div>
+      </div>
+    </div>
 
-    <SplitterPanel :size="50">
-      <Splitter layout="vertical">
-        <SplitterPanel :size="50">
-          <div class="p-4 pt-0 h-full flex flex-column">
+
+    <div class="col-12 sm:col-6 h-full">
+      <div class="grid">
+        <div class="col-12">
+          <div class="h-full flex flex-column">
             <div class="flex justify-content-center align-items-center">
               <h5 class="m-0">Request</h5>
               <Button
@@ -136,15 +134,15 @@ async function sendRequest() {
                   <Textarea v-model="requestBody" rows=8 class="w-full"/>
                 </div>
               </div>
-              <div class="text-center">
+              <div class="text-center mt-2">
                 <Button @click="sendRequest"><b>Send</b></Button>
               </div>
             </div>
           </div>
-        </SplitterPanel>
+        </div>
 
-        <SplitterPanel :size="50">
-          <div class="p-4 pt-0 flex flex-column h-full">
+        <div class="col-12">
+          <div class="flex flex-column h-full">
             <div class="flex justify-content-center align-items-center">
               <h5 class="m-0">Response</h5>
               <Button
@@ -156,15 +154,14 @@ async function sendRequest() {
                   @click="copyResponse($event)">
               </Button>
             </div>
-            <CodeHighlight class="m-0 p-4">
+            <CodeHighlight class="m-0 p-4" style="text-wrap: pretty;">
               {{ response }}
             </CodeHighlight>
           </div>
-        </SplitterPanel>
-      </Splitter>
-    </SplitterPanel>
-  </Splitter>
-
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <style scoped lang="scss">
