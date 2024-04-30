@@ -13,13 +13,20 @@ function stringify(obj) {
   return JSON.stringify(obj, null, 2)
 }
 
+function parseOrStr(str) {
+  try {
+    return JSON.parse(str)
+  } catch (e) {
+    return str
+  }
+}
 
 const rpcRequest = computed(() => {
   return {
     method: requestMethod.value,
     uri: requestEndpoint.value,
     params: undefined,
-    body: JSON.parse(requestBody.value),
+    body: parseOrStr(requestBody.value),
   }
 })
 const methods = ['GET', 'POST', 'PUT', 'DELETE', "PATCH"]
@@ -56,19 +63,8 @@ onMounted(() => {
     "text": "Hi there!",
     "session": props.session.name,
   }
-  const responseExample = {
-    status: 200,
-    response: {
-      "id": "false_11111111111@c.us_AAAAAAAAAAAAAAAAAAAA",
-      "timestamp": 1666943582,
-      "from": "11111111111@c.us",
-      "fromMe": true,
-      "to": "11111111111@c.us",
-      "participant": "string",
-    }
-  }
   requestBody.value = stringify(requestExample)
-  response.value = stringify(responseExample)
+  response.value = "..."
 })
 
 </script>
