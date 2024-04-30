@@ -272,13 +272,11 @@ const globalFilterFields = [
 
     <Column>
       <template #body="{data}">
-        <div class="text-right">
-          <Button icon="pi pi-cog" class="mr-2" severity="secondary" rounded outlined @click="showSessionConfig(data)"/>
-          <Button icon="pi pi-play" class="mr-2" severity="success" rounded outlined @click="startSession(data)"/>
-          <Button icon="pi pi-stop" class="mr-2" severity="warning" rounded outlined
-                  @click="confirmStopSession($event, data)"/>
-          <Button icon="pi pi-trash" class="mt-2" severity="danger" rounded outlined
-                  @click="confirmLogoutSession($event, data)"/>
+        <div class="flex flex-column sm:flex-row gap-2 justify-content-end ">
+          <Button icon="pi pi-cog" severity="secondary" rounded outlined @click="showSessionConfig(data)"/>
+          <Button icon="pi pi-play" severity="success" rounded outlined @click="startSession(data)"/>
+          <Button icon="pi pi-stop" severity="warning" rounded outlined @click="confirmStopSession($event, data)"/>
+          <Button icon="pi pi-trash" severity="danger" rounded outlined @click="confirmLogoutSession($event, data)"/>
         </div>
       </template>
     </Column>

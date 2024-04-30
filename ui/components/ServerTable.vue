@@ -176,7 +176,7 @@ function refreshServers() {
 
     <Column>
       <template #body="{data}">
-        <div class="text-right">
+        <div class="flex flex-column sm:flex-row gap-2 justify-content-end ">
           <Button icon="pi pi-pencil" severity="success" rounded outlined @click="editServer(data)"/>
           <ConfirmPopup></ConfirmPopup>
           <Button icon="pi pi-times" severity="warning" rounded outlined
