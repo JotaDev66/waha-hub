@@ -7,10 +7,12 @@ const response = ref(null)
 const requestMethod = ref('POST')
 const requestEndpoint = ref('/api/sendText')
 const requestBody = ref("")
+const fetching = ref(false)
 
 function stringify(obj) {
   return JSON.stringify(obj, null, 2)
 }
+
 
 const rpcRequest = computed(() => {
   return {
@@ -33,8 +35,19 @@ async function copyRequest(event) {
 }
 
 async function sendRequest() {
-  const data = await store.callServerAPI(props.session.server.id, rpcRequest.value)
-  response.value = stringify(data)
+  try {
+    fetching.value = true
+    const data = await store.callServerAPI(props.session.server.id, rpcRequest.value)
+    response.value = stringify(data)
+  } catch (e) {
+    if (e.response) {
+      response.value = stringify(e.response.data)
+    } else {
+      response.value = stringify(e)
+    }
+  } finally {
+    fetching.value = false
+  }
 }
 
 onMounted(() => {
@@ -91,7 +104,8 @@ onMounted(() => {
           </div>
         </div>
         <div class="text-center mt-2">
-          <Button @click="sendRequest"><b>Send</b></Button>
+          <Button @click="sendRequest" :loading="fetching" label="Send" icon="pi pi-send" icon-pos="right">
+          </Button>
         </div>
       </div>
     </div>
