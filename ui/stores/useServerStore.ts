@@ -59,14 +59,6 @@ export const useServerStore = defineStore('serverStore', () => {
         // Await all, set connected based on the result
         try {
             await Promise.all(requests)
-            if (server.connected === false) {
-                toast.add({
-                    severity: 'success',
-                    summary: `Server connected`,
-                    detail: `${server.name} (${server.connection.url}) is now connected.`,
-                    life: 3000
-                });
-            }
             server.connected = true
         } catch (e) {
             server.connected = false

@@ -78,7 +78,7 @@ const {refreshing} = storeToRefs(store)
 
     <router-link to="/" class="layout-topbar-logo">
       <img class="mb-1" :src="logoUrl" alt="logo"/>
-      <span>WAHA Hub</span>
+      <span>Hub | WAHA</span>
     </router-link>
 
 

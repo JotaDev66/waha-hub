@@ -5,7 +5,7 @@ export default defineNuxtConfig({
     ssr: false,
     app: {
         head: {
-            title: 'WAHA Hub',
+            title: 'Hub | WAHA',
             link: [
                 {
                     id: 'theme-css',
