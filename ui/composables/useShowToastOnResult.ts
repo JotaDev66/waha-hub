@@ -31,7 +31,7 @@ const useShowToastOnResult = () => {
                         details.push()
                         details.push(`Response: ${JSON.stringify(error.response.data)}`)
                     }
-                    if (!details) {
+                    if (details.length === 0) {
                         details.push(error)
                     }
                     toast.add({
