@@ -63,7 +63,7 @@ export const useServerStore = defineStore('serverStore', () => {
             toast.add({
                 severity: 'error',
                 summary: `Server connection failed`,
-                detail: `${server.name} (${server.connection.url}) is not connected.`,
+                detail: `${server.name} (${server.connection.url}) is not connected.\nPlease make sure it's online and set right API key in the configuration.`,
                 life: 3000
             });
             console.error(`Failed to refresh server - ${id}`, e)
