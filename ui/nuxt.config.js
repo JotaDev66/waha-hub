@@ -12,7 +12,7 @@ export default defineNuxtConfig({
                     id: 'theme-css',
                     rel: 'stylesheet',
                     type: 'text/css',
-                    href: '/themes/lara-dark-green/theme.css'
+                    href: '/dashboard/themes/lara-dark-green/theme.css'
                 }
             ]
         }
