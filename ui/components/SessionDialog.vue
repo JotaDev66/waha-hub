@@ -159,7 +159,6 @@ async function copyRequest(event) {
               id="proxy-server"
               v-model.trim="session.config.proxy.server"
               required="true"
-              autofocus
               :invalid="submitted && !session.config.proxy.server"
               :disabled="modeView"
               placeholder="host:port"

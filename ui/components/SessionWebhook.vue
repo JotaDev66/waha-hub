@@ -27,7 +27,7 @@ const events = [
     <AccordionTab :header="`Webhook ${props.index + 1}`">
       <div class="field">
         <label for="url">URL</label>
-        <InputText id="url" v-model.trim="webhook.url" required="true" autofocus
+        <InputText id="url" v-model.trim="webhook.url" required="true"
                    :disabled="disabled"
         />
       </div>
