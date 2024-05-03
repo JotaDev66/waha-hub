@@ -28,7 +28,7 @@ defineExpose({
 
 <template>
   <template v-if="pending">
-    <ProgressBar mode="indeterminate" style="height: 6px"></ProgressBar>
+    <ProgressBar mode="indeterminate" style="height: 3px"></ProgressBar>
     <Skeleton
         v-if="!data && !error"
         width="100%"
