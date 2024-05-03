@@ -26,7 +26,6 @@ export class WahaAPIDirectClient implements IWahaAPIClient {
             'Content-Type': 'application/json',
             "Accept": "application/json",
         }
-        console.log('connection', connection)
         if (connection.key) {
             headers['X-Api-Key'] = connection.key
         }
