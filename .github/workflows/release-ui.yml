@@ -1,0 +1,33 @@
+name: Release UI
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+
+      - name: Install dependencies
+        working-directory: ui
+        run: |
+          yarn install
+
+      - name: Build
+        working-directory: ui
+        run: |
+          yarn generate
+
+      - name: Upload folder
+        uses: actions/upload-artifact@v4
+        with:
+          name: dashboard
+          path: ui/.output/public
+          retention-days: 5
