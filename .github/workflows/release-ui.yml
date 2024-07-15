@@ -50,7 +50,8 @@ jobs:
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@4.0.0
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.GH_TOKEN_WAHA_DASHBOARD }}
+          repository-name: devlikeapro/waha-dashboard
           BRANCH: gh-pages
           FOLDER: public
           CLEAN: true
