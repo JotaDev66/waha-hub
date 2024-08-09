@@ -18,6 +18,13 @@ function sortVariables(variables) {
     return 3
   })
 }
+function formatVariables(variables){
+  /**
+   * KEY1=VALUE1
+   * KEY2=VALUE2
+   */
+  return variables.map(variable => `${variable.name}=${variable.value}`).join("\n")
+}
 
 const {
   data,
@@ -35,6 +42,11 @@ const {
 watch(() => props.server, refresh, {immediate: true})
 watch(showAll, refresh)
 
+async function copyVariables(event) {
+  const value = formatVariables(data.value)
+  await navigator.clipboard.writeText(value);
+  event.preventDefault();
+}
 </script>
 
 <template>
@@ -62,8 +74,15 @@ watch(showAll, refresh)
     >
       <template #header>
         <div class="flex flex-wrap justify-content-between">
-          <div>
+          <div class="flex gap-2 align-items-center">
             <span class="text-xl font-bold">Variables</span>
+            <Button
+                rounded
+                text=""
+                v-tooltip.focus.bottom="{ value: 'Copied to clipboard' }"
+                icon="pi pi-copy"
+                @click="copyVariables($event)">
+            </Button>
           </div>
           <div class="flex gap-2 align-items-center">
             <InputSwitch inputId="show-all" v-model="showAll"/>
