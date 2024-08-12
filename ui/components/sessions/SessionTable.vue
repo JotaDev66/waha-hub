@@ -109,7 +109,7 @@ function startSession(selected) {
   sessionDialog.value = true;
 }
 
-function confirmStopSession(event, session) {
+function confirmStopSession(event, session, loading) {
   confirmPopup.require({
     target: event.target,
     message: `Stop '${session.name}' session?\n`,
@@ -121,8 +121,8 @@ function confirmStopSession(event, session) {
     accept: async () => {
       await req(
           store.stopSession(session.server.id, session.name, false),
-          "Stopped",
-          "Failed to stop session",
+          `Stopped - '${session.name}'`,
+          `Failed to stop session - '${session.name}'`,
       )
     },
     reject: () => {
@@ -142,8 +142,8 @@ function confirmLogoutSession(event, session) {
     accept: async () => {
       await req(
           store.logoutSession(session.server.id, session.name),
-          "Logged out",
-          "Failed to logout session",
+          `Logged out - '${session.name}'`,
+          `Failed to logout session - '${session.name}'`,
       )
     },
     reject: () => {
@@ -279,7 +279,12 @@ const globalFilterFields = [
         <div class="flex flex-row gap-2 justify-content-end">
           <Button icon="pi pi-cog" severity="secondary" rounded outlined @click="showSessionConfig(data)"/>
           <Button icon="pi pi-play" severity="success" rounded outlined @click="startSession(data)"/>
-          <Button icon="pi pi-stop" severity="warning" rounded outlined @click="confirmStopSession($event, data)"/>
+          <Button
+              icon="pi pi-stop"
+              severity="warning"
+              rounded outlined
+              @click="confirmStopSession($event, data)"
+          />
           <Button icon="pi pi-trash" severity="danger" rounded outlined @click="confirmLogoutSession($event, data)"/>
         </div>
       </template>
