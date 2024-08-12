@@ -45,13 +45,7 @@ function confirmRestartSession(event) {
     rejectLabel: 'No',
     acceptLabel: 'Yes, Restart',
     accept: async () => {
-      stopping.value = true
-      toast.add({
-        severity: 'info',
-        summary: `Restarting...`,
-        detail: session.name,
-        life: 3000
-      });
+      restarting.value = true
       await req(
           store.restartSession(session.server.id, session.name),
           `Restarted`,
@@ -59,7 +53,7 @@ function confirmRestartSession(event) {
           session.name,
           session.name
       ).finally(
-          () => stopping.value = false
+          () => restarting.value = false
       )
     },
     reject: () => {
@@ -79,12 +73,6 @@ function confirmStopSession(event) {
     acceptLabel: 'Yes, Stop',
     accept: async () => {
       stopping.value = true
-      toast.add({
-        severity: 'info',
-        summary: `Stopping...`,
-        detail: session.name,
-        life: 3000
-      });
       await req(
           store.stopSession(session.server.id, session.name),
           `Stopped`,
@@ -112,12 +100,6 @@ function confirmLogoutSession(event) {
     acceptLabel: 'Yes, Logout',
     accept: async () => {
       loggingOut.value = true
-      toast.add({
-        severity: 'info',
-        summary: `Logging out - '${session.name}'...`,
-        detail: session.name,
-        life: 3000
-      });
       await req(
           store.logoutSession(session.server.id, session.name),
           `Logged out`,
@@ -145,11 +127,6 @@ function confirmRemoveSession(event) {
     acceptLabel: 'Yes, Delete',
     accept: async () => {
       removing.value = true
-      toast.add({
-        severity: 'info',
-        summary: `Removing - '${session.name}'...`,
-        life: 3000
-      });
       await req(
           store.deleteSession(session.server.id, session.name),
           `Removed`,
