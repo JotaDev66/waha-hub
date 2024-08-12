@@ -2,7 +2,10 @@
 import {useServerStore} from "../stores/useServerStore";
 import {ref, computed, watch} from "vue";
 import lodash from "lodash";
+
+const toast = useToast();
 import useShowToastOnResult from "../composables/useShowToastOnResult";
+import {useToast} from "primevue/usetoast";
 
 const visible = defineModel("visible");
 const session = defineModel("session");
@@ -65,7 +68,7 @@ async function saveSession() {
     loading.value = true
     await req(
         store.createSession(session.value.server, sessionStartRequest.value),
-        "Session Started",
+        `Started - '${session.value.name}'`,
         "Failed to start session",
     )
   } finally {

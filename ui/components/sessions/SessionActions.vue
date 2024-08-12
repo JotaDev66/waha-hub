@@ -140,7 +140,7 @@ function confirmRemoveSession(event) {
         life: 3000
       });
       await req(
-          store.deleteServer(session.server.id, session.name),
+          store.deleteSession(session.server.id, session.name),
           `Removed - '${session.name}'`,
           `Failed to delete session - '${session.name}'`,
       ).finally(
@@ -170,6 +170,7 @@ function confirmRemoveSession(event) {
         rounded
         outlined
         @click="startSession"
+        :loading="starting"
         :disabled="allDisabled"
     />
     <Button
@@ -203,7 +204,7 @@ function confirmRemoveSession(event) {
         rounded
         outlined
         @click="confirmRemoveSession($event, session)"
-        :loading="loggingOut"
+        :loading="removing"
         :disabled="allDisabled"
     />
   </div>
