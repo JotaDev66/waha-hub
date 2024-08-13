@@ -2,6 +2,24 @@ import {ServerId} from "../hub/IHubServerAPI";
 import {Session, SessionConfig, SessionStartRequest} from "./dtos";
 import {IWahaAPIClient} from "./IWahaAPIClient";
 import {HTTPRequest} from "./HTTPRequest";
+import lodash from "lodash";
+
+/**
+ * Go over metadata fields convert it to big key=value;key=value string
+ * @param metadata
+ */
+function makeFilterCompatible(metadata: any): string {
+    if (!metadata) {
+        return metadata
+    }
+    const result = []
+    for (const key in metadata) {
+        if (metadata.hasOwnProperty(key)) {
+            result.push(`${key}=${metadata[key]}`)
+        }
+    }
+    return result.join(';')
+}
 
 export class WahaAPI {
     private api: IWahaAPIClient;
@@ -34,9 +52,13 @@ export class WahaAPI {
         if (!session.config.webhooks) {
             session.config.webhooks = []
         }
-        if (!session.config.metadata){
+        if (!session.config.metadata) {
             session.config.metadata = {}
         }
+
+        // @ts-ignore
+        session._metadata = makeFilterCompatible(session.config.metadata)
+
         if (!session.config.noweb) {
             session.config.noweb = {store: {enabled: false, fullSync: false}}
         }

@@ -112,12 +112,14 @@ function openSessionControl(data) {
   session.value = data
 }
 
+
 const globalFilterFields = computed(
     () => {
       return [
         'name',
         'me.id',
         "me.pushName",
+        "_metadata",
       ]
     }
 )
