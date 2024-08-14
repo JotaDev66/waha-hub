@@ -187,7 +187,7 @@ async function copyRequest(event) {
 
     <div class="mb-4" v-if="isNOWEB">
       <div class="mb-3">
-        <h5>Engine Settings </h5>
+        <h5>🏭 Engine Settings </h5>
       </div>
       <Accordion :activeIndex="0">
         <AccordionTab header="NOWEB">
@@ -232,7 +232,7 @@ async function copyRequest(event) {
 
     <div>
       <div>
-        <h5>Metadata</h5>
+        <h5>📝 Metadata</h5>
       </div>
 
       <KeyValueTable
@@ -251,7 +251,7 @@ async function copyRequest(event) {
     <div>
       <div class="field flex justify-content-between align-items-center">
         <div>
-          <h5><label for="proxy">Proxy</label></h5>
+          <h5><label for="proxy">🌐 Proxy</label></h5>
         </div>
         <ToggleButton
             v-model="proxyEnabled"
@@ -300,7 +300,7 @@ async function copyRequest(event) {
 
     <div class="field flex justify-content-between align-items-center">
       <div>
-        <h5><label for="debug">Debug</label></h5>
+        <h5><label for="debug">🛠️ Debug</label></h5>
       </div>
       <ToggleButton
           v-model="session.config.debug"
