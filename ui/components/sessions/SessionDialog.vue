@@ -232,7 +232,11 @@ async function copyRequest(event) {
 
     <div>
       <div>
-        <h5>📝 Metadata</h5>
+        <h5>📝 Metadata
+          <i
+              v-tooltip='"Key value pairs you can attach to Session and will receive it in webhooks, API and search the values on Dashboard."'
+              class="pi pi-info-circle"></i>
+        </h5>
       </div>
 
       <KeyValueTable
