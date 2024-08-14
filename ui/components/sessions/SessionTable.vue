@@ -62,7 +62,7 @@ function openNew() {
       webhooks: [
         {
           url: "https://httpbin.org/post",
-          events: ["session.status", "message", "message.reaction"],
+          events: ["session.status", "message"],
           hmac: {
             key: null,
           },
