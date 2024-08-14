@@ -29,12 +29,17 @@ const events = [
   "label.chat.added",
   "label.chat.deleted",
 ]
-const customHeadersKeyValue = ref(
-    convertKeyValueToList(webhook.value.customerHeaders)
-)
-const customHeadersEnabled = ref(customHeadersKeyValue.value.length > 0)
-watch(customHeadersKeyValue, (value) => {
-  webhook.value.customerHeaders = convertListToKeyValue(value)
+const customHeadersEnabled = ref(webhook.value.customHeaders && webhook.value.customHeaders.length > 0)
+watch(customHeadersEnabled, (value, oldValue) => {
+  if (oldValue && !value) {
+    webhook.value.customHeaders = null
+    return
+  }
+  if (!oldValue && value) {
+    webhook.value.customHeaders = [
+      {name: "X-Header-1", value: "123"}
+    ]
+  }
 })
 
 
@@ -153,7 +158,8 @@ watch(customHeadersKeyValue, (value) => {
         </div>
         <KeyValueTable
             v-if="customHeadersEnabled"
-            v-model="customHeadersKeyValue"
+            v-model="webhook.customHeaders"
+            key-column="name"
             key-column-name="Header"
             prefix="X-Header-"
         ></KeyValueTable>

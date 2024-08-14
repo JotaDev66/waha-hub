@@ -69,7 +69,8 @@ function openNew() {
           retries: {
             delaySeconds: 2,
             attempts: 15,
-          }
+          },
+          customHeaders: null,
         },
       ],
       noweb: {

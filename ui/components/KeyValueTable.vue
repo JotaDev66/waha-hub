@@ -3,6 +3,7 @@ import {ref} from 'vue';
 
 const data = defineModel()
 const props = defineProps([
+  'keyColumn',
   'keyColumnName',
   'prefix',
 ])
@@ -15,26 +16,14 @@ const onRowEditSave = (event) => {
 };
 const onCellEditComplete = (event) => {
   let {data, newValue, field} = event;
-
-  switch (field) {
-    case 'quantity':
-    case 'price':
-      if (isPositiveInteger(newValue)) data[field] = newValue;
-      else event.preventDefault();
-      break;
-
-    default:
-      if (newValue.trim().length > 0) data[field] = newValue;
-      else event.preventDefault();
-      break;
-  }
+  data[field] = newValue;
 };
 
 function addRow() {
   const count = data.value.length + 1;
   // add row at the start
   const key = `${props.prefix}${count}`
-  data.value.unshift({key: key, value: '123'});
+  data.value.unshift({[props.keyColumn]: key, value: '123'});
 }
 
 function deleteRow(index) {
@@ -48,7 +37,7 @@ function deleteRow(index) {
         v-model:editingRows="editingRows"
         :value="data"
         editMode="cell"
-        dataKey="key"
+        :dataKey="props.keyColumn"
         @row-edit-save="onRowEditSave"
         @cell-edit-complete="onCellEditComplete"
         :pt="{
@@ -61,7 +50,7 @@ function deleteRow(index) {
             }"
     >
       <Column
-          field="key"
+          :field="props.keyColumn"
           :header="props.keyColumnName"
           style="width: 40%"
       >
