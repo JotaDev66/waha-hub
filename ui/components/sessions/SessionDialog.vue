@@ -226,10 +226,11 @@ async function copyRequest(event) {
     <div>
       <div class="field flex justify-content-between align-items-center">
         <div>
-          <label for="debug">Proxy</label>
+          <h5><label for="proxy">Proxy</label></h5>
         </div>
         <ToggleButton
             v-model="proxyEnabled"
+            id="proxy"
             onLabel="Proxy On"
             offLabel="Proxy Off"
         >
@@ -274,7 +275,7 @@ async function copyRequest(event) {
 
     <div class="field flex justify-content-between align-items-center">
       <div>
-        <label for="debug">Debug Mode</label>
+        <h5><label for="debug">Debug</label></h5>
       </div>
       <ToggleButton
           v-model="session.config.debug"
