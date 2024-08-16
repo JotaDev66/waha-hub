@@ -4,9 +4,9 @@ import {FilterMatchMode} from "primevue/api";
 import {useConfirm} from "primevue/useconfirm";
 import lodash from "lodash";
 import {useAsyncData} from "nuxt/app";
-import {useRouter} from "vue-router";
 
-const confirmPopup = useConfirm();
+
+const confirm = useConfirm();
 const store = useServerStore()
 const req = useShowToastOnResult()
 
@@ -15,6 +15,7 @@ const server = ref({connection: {}}
 );
 const serverDialog = ref(false)
 const serverControlDialog = ref(false)
+const forceRestart = ref(false)
 
 const dt = ref(null);
 const filters = ref({});
@@ -53,12 +54,13 @@ function editServer(selected) {
 }
 
 function confirmDeleteServer(event, server) {
-  confirmPopup.require({
+  confirm.require({
+    group: "popup",
     target: event.target,
     message: `Disconnect '${server.name}?'`,
     icon: 'pi pi-exclamation-triangle',
     rejectClass: 'p-button-secondary p-button-outlined p-button-sm',
-    acceptClass: 'p-button-warning p-button-sm',
+    acceptClass: 'p-button-danger p-button-sm',
     rejectLabel: 'No',
     acceptLabel: 'Yes, Disconnect',
     accept: () => {
@@ -72,6 +74,30 @@ function confirmDeleteServer(event, server) {
     }
   });
 }
+
+const confirmRestart = (server) => {
+  confirm.require({
+    group: "restart",
+    message: server.name,
+    header: `Restart '${server.name}' server?`,
+    icon: 'pi pi-replay',
+    rejectClass: 'p-button-secondary p-button-outlined p-button-sm',
+    acceptClass: 'p-button-warning p-button-sm',
+    rejectLabel: 'No',
+    acceptLabel: 'Yes, Restart',
+    accept: async () => {
+      await req(
+          store.stopServer(server, forceRestart.value),
+          `Restarting...`,
+          `Failed to restart server`,
+          server.name,
+          server.name,
+      )
+    },
+    reject: () => {
+    }
+  });
+};
 
 function refreshServers() {
   useAsyncData('store', async () => await store.refresh())
@@ -181,12 +207,18 @@ function refreshServers() {
       <template #body="{data}">
         <div class="flex flex-row gap-2 justify-content-end">
           <Button
-              v-tooltip.top="'Edit'"
+              v-tooltip.top="'Edit Server'"
               icon="pi pi-pencil" severity="success" rounded outlined @click="editServer(data)"/>
-          <ConfirmPopup></ConfirmPopup>
           <Button
-              v-tooltip.top="'Remove'"
-              icon="pi pi-times" severity="warning" rounded outlined @click="confirmDeleteServer($event, data)"/>
+              icon="pi pi-replay"
+              v-tooltip.top="'Restart Server'"
+              severity="warning"
+              rounded outlined
+              @click="confirmRestart(data)"
+          />
+          <Button
+              v-tooltip.top="'Disconnect Server'"
+              icon="pi pi-times" severity="danger" rounded outlined @click="confirmDeleteServer($event, data)"/>
         </div>
       </template>
     </Column>
@@ -200,6 +232,40 @@ function refreshServers() {
       v-model:server="server"
   >
   </ServerControlDialog>
+  <ConfirmPopup group="popup"></ConfirmPopup>
+  <ConfirmDialog group="restart">
+    <template #message="slotProps">
+      <div>
+        <p>
+          You're going to restart <b>{{ slotProps.message.message }}</b> server.
+        </p>
+        <p>
+          It'll call <code>POST api/server/stop</code>,
+          but if you're using Docker
+          <br>
+          and followed
+          <a href="https://waha.devlike.pro/docs/how-to/install/" target="_blank"><b>🔧 Install & Update</b></a> guide
+          Docker will start a new container.
+        </p>
+
+        <div>
+          <p>
+            By default it will gracefully stop the server, but you can force restart.
+          </p>
+          <ToggleButton
+              v-model="forceRestart"
+              id="forceRestart"
+              onLabel="Force Restart On"
+              offLabel="Force Restart Off"
+          >
+            <template #icon>
+              <i class="pi pi-replay mr-2"/>
+            </template>
+          </ToggleButton>
+        </div>
+      </div>
+    </template>
+  </ConfirmDialog>
 </template>
 
 <style lang="scss">

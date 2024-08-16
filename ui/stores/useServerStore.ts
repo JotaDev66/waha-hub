@@ -11,6 +11,7 @@ import {HubServerLocalAPI} from "../services/impl/hub/HubServerLocalAPI";
 import {WahaAPIDirectClient} from "../services/impl/waha/WahaAPIDirectClient";
 import {useToast} from "primevue/usetoast";
 import {WebSocketClient} from "../services/WebSocketService";
+import {sleep} from "../services/utils";
 
 
 export const useServerStore = defineStore('serverStore', () => {
@@ -135,6 +136,12 @@ export const useServerStore = defineStore('serverStore', () => {
         await refresh()
     }
 
+    async function stopServer(server: ServerInfo, force: boolean) {
+        await wahaAPI.stopServer(server.id, force)
+        await sleep(2000)
+        refresh()
+    }
+
     async function deleteServer(id: string) {
         await hubServerAPI.remove(id)
         sessions.delete(id)
@@ -228,6 +235,7 @@ export const useServerStore = defineStore('serverStore', () => {
         deleteServer,
         editServer,
         getServer,
+        stopServer,
         createSession,
         updateSession,
         deleteSession,

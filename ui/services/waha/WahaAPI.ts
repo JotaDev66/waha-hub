@@ -172,6 +172,17 @@ export class WahaAPI {
         });
     }
 
+    stopServer(serverId: ServerId, force: boolean): Promise<any> {
+        return this.api.call(serverId, {
+            method: 'POST',
+            uri: `/api/server/stop`,
+            params: {},
+            body: {
+                force: force,
+            }
+        });
+    }
+
     getServerEnvironment(serverId: ServerId, all: boolean): Promise<any> {
         return this.api.call(serverId, {
             method: 'GET',
