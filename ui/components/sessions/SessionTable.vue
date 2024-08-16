@@ -12,6 +12,7 @@ const store = useServerStore()
 const {allSessions, refreshing, servers} = storeToRefs(store)
 const sessions = allSessions
 
+
 const session = ref({
   config: {
     webhooks: [],
@@ -195,7 +196,8 @@ const globalFilterFields = computed(
   <DataTable
       :value="sessions.length > 0 ? sessions : []"
       :paginator="true"
-      :rows="20"
+      :rows="10"
+      :rowsPerPageOptions="[5, 10, 20, 50, 100, 500]"
       :dataKey="(data) => `${data.server.id}-${data.name}`"
       :rowHover="true"
       v-model:filters="filters"
@@ -238,6 +240,7 @@ const globalFilterFields = computed(
     </template>
     <template #empty> No sessions found</template>
     <template #loading> Loading sessions...</template>
+    <Column selectionMode="multiple" headerStyle="width: 3rem"></Column>
 
     <Column
         v-if="isNameEnabled"
