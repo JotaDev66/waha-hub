@@ -1,6 +1,5 @@
 <script setup>
 import {ref, onBeforeMount} from 'vue';
-import {useToast} from 'primevue/usetoast';
 import {FilterMatchMode} from "primevue/api";
 import {useConfirm} from "primevue/useconfirm";
 import lodash from "lodash";
@@ -8,7 +7,6 @@ import {useAsyncData} from "nuxt/app";
 import {useRouter} from "vue-router";
 
 const confirmPopup = useConfirm();
-const router = useRouter();
 const store = useServerStore()
 const req = useShowToastOnResult()
 
@@ -156,14 +154,10 @@ function refreshServers() {
         <Skeleton v-if="data.connected === undefined" width="9rem"></Skeleton>
         <ServerConnectionIcon v-else-if="data.connected===false" :connected="data.connected"></ServerConnectionIcon>
         <template v-else>
-          <code>
-            {{ data.version.engine }}
-          </code>
-          <code> (</code>
-          <code :class="{'text-orange-400': data.version.version !==store.latestVersion}">
-            {{ data.version.version }}
-          </code>
-          <code>)</code>
+          <ServerInfoColumn
+              :server="data"
+          >
+          </ServerInfoColumn>
         </template>
       </template>
     </Column>
