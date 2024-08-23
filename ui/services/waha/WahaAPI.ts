@@ -52,6 +52,7 @@ export class WahaAPI {
         if (!session.config.webhooks) {
             session.config.webhooks = []
         }
+        session.config.webhooks = [].concat(session.config.webhooks)
         if (!session.config.metadata) {
             session.config.metadata = {}
         }
