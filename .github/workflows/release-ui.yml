@@ -11,7 +11,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           persist-credentials: false
 
@@ -37,7 +37,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           persist-credentials: false
 
@@ -57,6 +57,6 @@ jobs:
         with:
           token: ${{ secrets.GH_TOKEN_WAHA_DASHBOARD }}
           repository-name: devlikeapro/waha-dashboard
-          BRANCH: gh-pages
-          FOLDER: public
-          CLEAN: true
+          branch: gh-pages
+          folder: public
+          clean: true
