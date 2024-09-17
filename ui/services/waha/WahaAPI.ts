@@ -149,6 +149,22 @@ export class WahaAPI {
         });
     }
 
+    getQR(serverId: ServerId, sessionName: string): Promise<string> {
+        return this.api.call(serverId, {
+            method: 'GET',
+            uri: `/api/${sessionName}/auth/qr`,
+            params: {session: sessionName},
+        });
+    }
+
+    getPairingCode(serverId: ServerId, sessionName: string): Promise<string> {
+        return this.api.call(serverId, {
+            method: 'GET',
+            uri: `/api/${sessionName}/auth/pairing-code`,
+            params: {session: sessionName},
+        });
+    }
+
     getProfilePicture(serverId: ServerId, sessionName: string, contactId: string): Promise<string> {
         return this.api.call(serverId, {
             method: 'GET',
