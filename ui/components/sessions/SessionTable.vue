@@ -119,9 +119,7 @@ function openNew() {
     server: server.id,
     name: "",
     config: {
-      metadata: {
-        ['user.id']: "123",
-      },
+      metadata: {},
       webhooks: [
         {
           url: "https://httpbin.org/post",
