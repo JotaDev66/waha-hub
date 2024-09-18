@@ -18,10 +18,11 @@ export interface Webhook {
 
 export interface NowebStoreConfig {
     enabled: boolean,
-    fullSync: boolean
+    fullSync: boolean,
 }
 
 export interface NowebConfig {
+    markOnline: boolean,
     store?: NowebStoreConfig
 }
 

@@ -137,10 +137,11 @@ function openNew() {
         },
       ],
       noweb: {
+        markOnline: true,
         store: {
           enabled: true,
           fullSync: false
-        }
+        },
       },
       proxy: {},
     },

@@ -61,7 +61,9 @@ export class WahaAPI {
         session._metadata = makeFilterCompatible(session.config.metadata)
 
         if (!session.config.noweb) {
-            session.config.noweb = {store: {enabled: false, fullSync: false}}
+            session.config.noweb = {
+                markOnline: true,
+                store: {enabled: false, fullSync: false}}
         }
         for (const webhook of session.config.webhooks) {
             if (!webhook.retries) {
