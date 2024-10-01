@@ -39,10 +39,6 @@ function openNew() {
   serverDialog.value = true;
 }
 
-function rowClick(event) {
-  openServerControl(event.data)
-}
-
 function openServerControl(selected) {
   server.value = lodash.cloneDeep(selected);
   serverControlDialog.value = true;
@@ -57,7 +53,7 @@ function confirmDeleteServer(event, server) {
   confirm.require({
     group: "popup",
     target: event.target,
-    message: `Disconnect '${server.name}?'`,
+    message: `Disconnect '${server.name}' worker?`,
     icon: 'pi pi-exclamation-triangle',
     rejectClass: 'p-button-secondary p-button-outlined p-button-sm',
     acceptClass: 'p-button-danger p-button-sm',
@@ -67,7 +63,7 @@ function confirmDeleteServer(event, server) {
       return req(
           store.deleteServer(server.id),
           "Disconnected",
-          "Failed to disconnect server",
+          "Failed to disconnect worker",
       )
     },
     reject: () => {
@@ -89,7 +85,7 @@ const confirmRestart = (server) => {
       await req(
           store.stopServer(server, forceRestart.value),
           `Restarting...`,
-          `Failed to restart server`,
+          `Failed to restart worker`,
           server.name,
           server.name,
       )
@@ -138,8 +134,6 @@ function refreshServers() {
       :filters="filters"
       :globalFilterFields="['name', 'id', 'connection.url']"
       showGridlines
-      @row-click="rowClick"
-      class="p-datatable--clickable"
       style="white-space: nowrap;"
   >
 
@@ -207,17 +201,22 @@ function refreshServers() {
       <template #body="{data}">
         <div class="flex flex-row gap-2 justify-content-end">
           <Button
-              v-tooltip.top="'Edit Server'"
+              :disabled="!data.connected"
+              v-tooltip.top="'Worker Info'"
+              icon="pi pi-info" severity="help" rounded outlined @click="openServerControl(data)"
+          />
+          <Button
+              v-tooltip.top="'Edit Worker'"
               icon="pi pi-pencil" severity="success" rounded outlined @click="editServer(data)"/>
           <Button
               icon="pi pi-replay"
-              v-tooltip.top="'Restart Server'"
+              v-tooltip.top="'Restart Worker'"
               severity="warning"
               rounded outlined
               @click="confirmRestart(data)"
           />
           <Button
-              v-tooltip.top="'Disconnect Server'"
+              v-tooltip.top="'Disconnect Worker'"
               icon="pi pi-times" severity="danger" rounded outlined @click="confirmDeleteServer($event, data)"/>
         </div>
       </template>
