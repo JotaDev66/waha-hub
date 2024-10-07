@@ -294,6 +294,10 @@ export const useServerStore = defineStore('serverStore', () => {
         return filterSessions(allSessions.value)
     })
 
+    const visibleSessionsByServer = computed(() => {
+        return lodash.groupBy(visibleSessions.value, session => session.server.id)
+    })
+
     return {
         servers,
         sessions,
@@ -321,5 +325,6 @@ export const useServerStore = defineStore('serverStore', () => {
         latestVersion,
         hideDuplicatedSessions,
         visibleSessions,
+        visibleSessionsByServer,
     }
 })

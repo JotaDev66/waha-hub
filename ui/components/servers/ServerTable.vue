@@ -199,7 +199,7 @@ function refreshServers() {
           </Skeleton>
           <ServerConnectionIcon v-if="data.connected===false" :connected="data.connected"></ServerConnectionIcon>
           <ServerSessionSummary
-              :sessions="store.sessions.get(data.id)"
+              :sessions="store.visibleSessionsByServer[data.id]"
           ></ServerSessionSummary>
         </div>
       </template>
