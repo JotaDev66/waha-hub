@@ -356,6 +356,11 @@ const globalFilterFields = computed(
       </template>
       <template #body="{ data }">
         {{ data.server.name }}
+        <i
+            v-if="data.assignedWorker && data.server.name !== data.assignedWorker"
+            v-tooltip='`Assigned Worker ID does not match\n\n👉 Assigned Worker ID: ${ data.assignedWorker }`'
+            class="pi pi-info-circle text-orange-400"
+        ></i>
       </template>
     </Column>
 
