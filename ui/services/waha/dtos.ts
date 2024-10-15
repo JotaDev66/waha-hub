@@ -7,6 +7,7 @@ export interface Hmac {
 export interface WebhookRetry {
     attempts: number,
     delaySeconds: number,
+    policy?: "linear" | "exponential" | "constant"
 }
 
 export interface Webhook {

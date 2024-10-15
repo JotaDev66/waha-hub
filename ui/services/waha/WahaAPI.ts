@@ -63,11 +63,15 @@ export class WahaAPI {
         if (!session.config.noweb) {
             session.config.noweb = {
                 markOnline: true,
-                store: {enabled: false, fullSync: false}}
+                store: {enabled: false, fullSync: false}
+            }
         }
         for (const webhook of session.config.webhooks) {
             if (!webhook.retries) {
-                webhook.retries = {attempts: 15, delaySeconds: 2}
+                webhook.retries = {attempts: 15, delaySeconds: 2, policy: "constant"}
+            }
+            if (!webhook.retries.policy) {
+                webhook.retries.policy = "constant"
             }
             if (webhook.retries.attempts === null || webhook.retries.attempts === undefined) {
                 webhook.retries.attempts = 15

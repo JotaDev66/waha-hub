@@ -7,7 +7,23 @@ const props = defineProps({
   disabled: Boolean,
   index: Number,
 })
-
+const retryPolicies = [
+  "constant",
+  "linear",
+  "exponential",
+]
+const retryPolicyTooltip = computed(() => {
+  const delay = webhook.value.retries?.delaySeconds ?? 2
+  const attemptsInExample = 4
+  const constant = Array.from({length: attemptsInExample}, (_, i) => delay)
+  const linear = Array.from({length: attemptsInExample}, (_, i) => delay * (i + 1))
+  const exponential = Array.from({length: attemptsInExample}, (_, i) => delay * 2 ** i)
+  return [
+    `Constant: ${constant.join(", ")}`,
+    `Linear: ${linear.join(", ")}`,
+    `Exponential: ${exponential.join(", ")}`,
+  ].join("\n")
+})
 const events = [
   "session.status",
   "message",
@@ -94,7 +110,7 @@ watch(customHeadersEnabled, (value, oldValue) => {
       <div>
         <div class="font-bold mb-2">Retries</div>
         <div class="flex gap-3">
-          <div class="field">
+          <div class="field" style="width: 10em">
             <label for="retries-attempts">Attempts</label>
             <InputNumber
                 v-model="webhook.retries.attempts"
@@ -113,7 +129,8 @@ watch(customHeadersEnabled, (value, oldValue) => {
               </template>
             </InputNumber>
           </div>
-          <div class="field">
+
+          <div class="field" style="width: 10em">
             <label for="retries-delay-seconds">Delay, seconds</label>
             <InputNumber
                 v-model="webhook.retries.delaySeconds"
@@ -131,6 +148,35 @@ watch(customHeadersEnabled, (value, oldValue) => {
                 <span class="pi pi-minus"/>
               </template>
             </InputNumber>
+          </div>
+
+          <div class="field">
+            <label for="retries-delay-policy">
+              Retry Policy
+              <i
+                  v-tooltip="retryPolicyTooltip"
+                  class="pi pi-info-circle"
+              ></i>
+            </label>
+            <Dropdown
+                id="retries-delay-policy"
+                v-model="webhook.retries.policy"
+                :options="retryPolicies"
+                placeholder="Select Retry Policy"
+                :max-selected-labels="1"
+                :disabled="disabled"
+            >
+              <template #option="slotProps">
+                <span style="text-transform: capitalize">
+                {{ slotProps.option }}
+                </span>
+              </template>
+              <template #value="slotProps">
+                <span style="text-transform: capitalize">
+                {{ slotProps.value }}
+                </span>
+              </template>
+            </Dropdown>
           </div>
         </div>
       </div>
