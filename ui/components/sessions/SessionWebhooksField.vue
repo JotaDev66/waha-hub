@@ -14,6 +14,7 @@ function add() {
     retries: {
       delaySeconds: 2,
       attempts: 15,
+      policy: "exponential",
     },
     customHeaders: null,
   }
