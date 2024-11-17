@@ -276,8 +276,6 @@ function download(event) {
       </template>
     </Column>
 
-    <Column field="id" header="Id" style="width: 10rem"></Column>
-
     <Column
         header="Detail"
         :show-filter-menu="false"

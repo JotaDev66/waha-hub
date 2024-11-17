@@ -4,10 +4,10 @@ const showData = computed(() => {
   const data = {...props.data}
   delete data._json
   return {
-    payload: data.payload,
     id: data.id,
     session: data.session,
     event: data.event,
+    payload: data.payload,
     ...data,
   }
 })

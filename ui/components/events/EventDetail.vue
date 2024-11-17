@@ -17,8 +17,7 @@ const values = computed(() => {
     case "message.reaction":
       return [
         payload.id,
-        // short body to 20 symbols
-        payload.body?.length > 20 ? payload.body.slice(0, 20) + "..." : payload.body,
+        payload.body,
         event === "message.ack" ? payload.ackName : null,
         payload.reaction?.text,
         payload.media?.url ? "🖼️" : null,
@@ -35,18 +34,25 @@ const values = computed(() => {
 
 const text = computed(() => {
   return values.value.filter(v => v != null).join(" | ")
+  // limit text to
 })
 
 </script>
 
 <template>
   <!--  key: value of values, one line for all -->
-  <div>
+  <div class="truncate">
     <code>{{ text }}</code>
   </div>
 
 </template>
 
 <style scoped lang="scss">
+.truncate {
+  width: 60rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 
 </style>
