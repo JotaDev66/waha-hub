@@ -34,7 +34,14 @@ onMounted(async () => {
 
 const events = ref([])
 
-const eventsByDefault = WAHAEvents.filter(e => e !== "engine.event")
+const excludeEventsFromDefault = [
+    // Too much data
+    "engine.event",
+    // There's group.v2.events
+    "group.join",
+    "group.leave",
+]
+const eventsByDefault = WAHAEvents.filter(e => !excludeEventsFromDefault.includes(e))
 
 const filters = ref({
   global: {value: null, matchMode: FilterMatchMode.CONTAINS},
