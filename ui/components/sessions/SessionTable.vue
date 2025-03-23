@@ -132,7 +132,8 @@ const initFilters = () => {
     global: {value: null, matchMode: FilterMatchMode.CONTAINS},
     status: {value: null, matchMode: FilterMatchMode.EQUALS},
     'server.id': {value: null, matchMode: FilterMatchMode.EQUALS},
-    name: {operator: FilterOperator.AND, constraints: [{value: null, matchMode: FilterMatchMode.STARTS_WITH}]},
+    name: {value: null, matchMode: FilterMatchMode.CONTAINS},
+    'me.id': {value: null, matchMode: FilterMatchMode.CONTAINS},
   };
 };
 
@@ -154,8 +155,7 @@ function openNew() {
     name: "",
     config: {
       metadata: {},
-      webhooks: [
-      ],
+      webhooks: [],
       noweb: {
         markOnline: true,
         store: {
@@ -275,6 +275,16 @@ const globalFilterFields = computed(
         </div>
         <div class="flex justify-content-between flex-column sm:flex-row gap-2 sm:gap-2">
           <HideDuplicates></HideDuplicates>
+          <div>
+            <IconField iconPosition="left">
+              <InputIcon class="pi pi-search"/>
+              <InputText
+                  v-model="filters['global'].value"
+                  placeholder="Search by Name, Phone, Metadata"
+                  style="width: 100%"
+              />
+            </IconField>
+          </div>
           <div style="text-align:left" class="flex flex-column">
             <MultiSelect
                 placeholder="Columns"
@@ -286,14 +296,6 @@ const globalFilterFields = computed(
                 @update:modelValue="onToggle"
             />
           </div>
-          <IconField iconPosition="left">
-            <InputIcon class="pi pi-search"/>
-            <InputText
-                v-model="filters['global'].value"
-                placeholder="Search by name, phone, metadata"
-                style="width: 100%"
-            />
-          </IconField>
         </div>
       </div>
     </template>
@@ -303,8 +305,18 @@ const globalFilterFields = computed(
 
     <Column
         v-if="isNameEnabled"
-        field="name" header="Name" sortable
+        field="name"
+        header="Name"
+        :show-filter-menu="false"
+        sortable
     >
+      <template #filter="{ filterModel, filterCallback }">
+        <InputText
+            v-model="filters['name'].value"
+            type="text"
+            placeholder="Session"
+        />
+      </template>
     </Column>
 
     <Column
@@ -326,6 +338,13 @@ const globalFilterFields = computed(
         <div class="text-center">
           <SessionChip :session="data"></SessionChip>
         </div>
+      </template>
+      <template #filter="{ filterModel, filterCallback }">
+        <InputText
+            v-model="filters['me.id'].value"
+            type="text"
+            placeholder="Me (Phone Number)"
+        />
       </template>
     </Column>
 
