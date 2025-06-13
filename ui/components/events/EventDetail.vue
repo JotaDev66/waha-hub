@@ -24,14 +24,14 @@ const values = computed(() => {
       ]
     case "message.revoked":
       return [
-        payload.after.id,
         payload.revokedMessageId,
+        payload.after.id,
       ]
     case "message.edited":
       return [
-        payload.message.id,
         payload.originalMessageId,
         payload.body,
+        payload.id,
       ]
     case "group.v2.join":
       return [
