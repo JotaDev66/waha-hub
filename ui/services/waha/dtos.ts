@@ -63,3 +63,24 @@ export interface SessionStartRequest {
     config: SessionConfig;
     start: boolean
 }
+
+export interface App {
+    id: string;
+    session: string;
+    app: string;
+    config: any;
+}
+
+export interface ChatWootAppConfig {
+    url: string;
+    accountId: number;
+    accountToken: string;
+    inboxId: number;
+    inboxIdentifier: string;
+    locale: string;
+}
+
+export interface Locale {
+    name: string;
+    locale: string;
+}

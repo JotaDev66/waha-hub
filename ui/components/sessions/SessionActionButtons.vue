@@ -21,7 +21,8 @@ const emit = defineEmits([
   "restart",
   "stop",
   "logout",
-  "delete"
+  "delete",
+  "apps"
 ])
 
 function shouldConfirm(action) {
@@ -59,6 +60,13 @@ const shouldShowConfiguration = computed(() => {
     return true
   }
   return !props.hideActions.includes('view')
+})
+
+const shouldShowApps = computed(() => {
+  if (!props.hideActions) {
+    return true
+  }
+  return !props.hideActions.includes('apps')
 })
 
 function confirmRestartSession(event) {
@@ -146,6 +154,16 @@ function confirmRemoveSession(event) {
         rounded
         outlined
         @click="$emit('view')"
+        :disabled="allDisabled"
+    />
+    <Button
+        v-if="shouldShowApps"
+        icon="pi pi-th-large"
+        v-tooltip.top="'Apps'"
+        severity="info"
+        rounded
+        outlined
+        @click="$emit('apps')"
         :disabled="allDisabled"
     />
     <Button

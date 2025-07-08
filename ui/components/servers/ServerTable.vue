@@ -5,6 +5,8 @@ import {useConfirm} from "primevue/useconfirm";
 import lodash from "lodash";
 import {useAsyncData} from "nuxt/app";
 import {dashboard} from "../../services/utils";
+import OverlayLinks from "../common/OverlayLinks.vue";
+import OverlayLink from "../common/OverlayLink.vue";
 
 
 const confirm = useConfirm();
@@ -17,6 +19,11 @@ const server = ref({connection: {}}
 const serverDialog = ref(false)
 const serverControlDialog = ref(false)
 const forceRestart = ref(false)
+const linksOverlayPanel = ref(null)
+
+const toggleLinksPanel = (event, server) => {
+  linksOverlayPanel.value.toggle(event, server);
+}
 
 const dt = ref(null);
 const filters = ref({});
@@ -210,6 +217,10 @@ function refreshServers() {
       <template #body="{data}">
         <div class="flex flex-row gap-2 justify-content-end">
           <Button
+              v-tooltip.top="'Links'"
+              icon="pi pi-link" severity="info" rounded outlined @click="toggleLinksPanel($event, data)"
+          />
+          <Button
               :disabled="!data.connected"
               v-tooltip.top="'Worker Info'"
               icon="pi pi-info" severity="help" rounded outlined @click="openServerControl(data)"
@@ -274,6 +285,24 @@ function refreshServers() {
       </div>
     </template>
   </ConfirmDialog>
+
+  <OverlayLinks ref="linksOverlayPanel" title="Server Links">
+    <OverlayLink 
+      :href="`${linksOverlayPanel.currentItem?.connection.url}/dashboard`" 
+      icon="pi-home" 
+      name="Dashboard"
+    />
+    <OverlayLink
+      :href="`${linksOverlayPanel.currentItem?.connection.url}/jobs`" 
+      icon="pi-cog" 
+      name="Jobs"
+    />
+    <OverlayLink
+        :href="linksOverlayPanel.currentItem?.connection.url"
+        icon="pi-code"
+        name="Swagger"
+    />
+  </OverlayLinks>
 </template>
 
 <style lang="scss">

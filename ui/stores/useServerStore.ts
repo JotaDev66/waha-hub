@@ -301,6 +301,27 @@ export const useServerStore = defineStore('serverStore', () => {
         return wahaAPI.call(serverId, request)
     }
 
+    // Apps API
+    async function getApps(serverId: ServerId, sessionName: string) {
+        return wahaAPI.getApps(serverId, sessionName)
+    }
+
+    async function createApp(serverId: ServerId, app: any) {
+        return wahaAPI.createApp(serverId, app)
+    }
+
+    async function updateApp(serverId: ServerId, app: any) {
+        return wahaAPI.updateApp(serverId, app)
+    }
+
+    async function deleteApp(serverId: ServerId, appId: string) {
+        return wahaAPI.deleteApp(serverId, appId)
+    }
+
+    async function getAppChatWootLocales(serverId: ServerId) {
+        return wahaAPI.getAppChatWootLocales(serverId)
+    }
+
     const allSessions = computed(() => {
             const result = new Array<Session>()
             sessions.forEach((value, key) => {
@@ -355,6 +376,13 @@ export const useServerStore = defineStore('serverStore', () => {
         getProfilePicture,
         getServerEnvironment,
         callServerAPI,
+        // Apps API
+        getApps,
+        createApp,
+        updateApp,
+        deleteApp,
+        getAppChatWootLocales,
+        // Version
         latestVersion,
         hideDuplicatedSessions,
         visibleSessions,

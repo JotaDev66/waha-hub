@@ -6,6 +6,7 @@ import lodash from "lodash";
 import {useAsyncData} from "nuxt/app";
 import {SessionStatuses} from "../../services/waha/dtos";
 import SessionLogin from "./SessionLogin.vue";
+import AppsDialog from "../apps/AppsDialog.vue";
 
 const toast = useToast();
 
@@ -22,6 +23,8 @@ const sessionDialog = ref(false)
 const sessionDialogMode = ref(undefined)
 const sessionControlDialog = ref(false)
 const sessionChatsDialog = ref(false)
+const appsDialog = ref(false)
+const appsServer = ref(null)
 
 const rows = ref(10)
 const dt = ref(null);
@@ -203,6 +206,12 @@ function openSessionControl(data) {
 function openSessionChats(data) {
   session.value = data
   sessionChatsDialog.value = true;
+}
+
+function showApps(data) {
+  session.value = data;
+  appsServer.value = data.server;
+  appsDialog.value = true;
 }
 
 watch(sessionChatsDialog, (val) => {
@@ -441,7 +450,7 @@ const globalFilterFields = computed(
               group="dialog"
               :name="`'${selectedVisibleSessions.length}' sessions`"
               :all-disabled="selectedVisibleSessions.length===0"
-              :hide-actions="['view']"
+              :hide-actions="['view', 'apps']"
               :is-starting="isBatchStarting"
               :is-restarting="isBatchRestarting"
               :is-stopping="isBatchStopping"
@@ -461,6 +470,7 @@ const globalFilterFields = computed(
             :session="data"
             :disabled="selectedVisibleSessions.length!==0"
             @view="showSessionConfig"
+            @apps="showApps"
         />
       </template>
     </Column>
@@ -479,6 +489,11 @@ const globalFilterFields = computed(
       v-model:session="session"
       :mode="sessionDialogMode"
   ></SessionDialog>
+  <AppsDialog
+      v-model:visible="appsDialog"
+      v-model:session="session"
+      v-model:server="appsServer"
+  ></AppsDialog>
 </template>
 
 <style lang="scss">

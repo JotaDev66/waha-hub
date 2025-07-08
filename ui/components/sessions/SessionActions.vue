@@ -4,6 +4,8 @@ const props = defineProps([
     "disabled"
 ])
 
+const emit = defineEmits(['view', 'apps'])
+
 
 const store = useServerStore()
 const req = useShowToastOnResult()
@@ -105,6 +107,7 @@ defineExpose({
         group="popup"
         :name="`'${session.name}' session`"
         @view="$emit('view', session)"
+        @apps="$emit('apps', session)"
         @start="startSession"
         @restart="restartSession"
         @stop="stopSession"

@@ -333,6 +333,7 @@ async function copyRequest(event) {
       </ToggleButton>
     </div>
 
+
     <template #footer>
       <div class="w-full flex flex-column gap-2">
         <div>

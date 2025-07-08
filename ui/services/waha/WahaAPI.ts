@@ -1,8 +1,7 @@
 import {ServerId} from "../hub/IHubServerAPI";
-import {Session, SessionConfig, SessionStartRequest} from "./dtos";
+import {App, Locale, Session, SessionConfig, SessionStartRequest} from "./dtos";
 import {IWahaAPIClient} from "./IWahaAPIClient";
 import {HTTPRequest} from "./HTTPRequest";
-import lodash from "lodash";
 
 /**
  * Go over metadata fields convert it to big key=value;key=value string
@@ -250,6 +249,67 @@ export class WahaAPI {
             method: 'GET',
             uri: `/api/server/environment`,
             params: {all: all},
+        });
+    }
+
+    //
+    // Apps API
+    //
+
+    /**
+     * Create a new app
+     */
+    createApp(serverId: ServerId, app: App): Promise<App> {
+        return this.api.call(serverId, {
+            method: 'POST',
+            uri: `/api/apps`,
+            params: {},
+            body: app,
+        });
+    }
+
+    /**
+     * Update an existing app
+     */
+    updateApp(serverId: ServerId, app: App): Promise<void> {
+        return this.api.call(serverId, {
+            method: 'PUT',
+            uri: `/api/apps/${app.id}`,
+            params: {},
+            body: app,
+        });
+    }
+
+    /**
+     * Delete an app
+     */
+    deleteApp(serverId: ServerId, appId: string): Promise<any> {
+        return this.api.call(serverId, {
+            method: 'DELETE',
+            uri: `/api/apps/${appId}`,
+            params: {},
+        });
+    }
+
+    /**
+     * Get all apps for a session
+     */
+    getApps(serverId: ServerId, sessionName: string): Promise<App[]> {
+        return this.api.call(serverId, {
+            method: 'GET',
+            uri: `/api/apps`,
+            params: {session: sessionName},
+        });
+    }
+
+    /**
+     * Get list of locales for ChatWoot app
+     */
+    getAppChatWootLocales(serverId: ServerId): Promise<Locale[]> {
+        return this.api.call(serverId, {
+            method: 'GET',
+            uri: `/api/apps/chatwoot/locales`,
+            params: {},
         });
     }
 }
