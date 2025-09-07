@@ -273,6 +273,7 @@
   "sessions.config.ignore.status.title": "🟢 الحالة",
   "sessions.config.ignore.groups.title": "\uD83D\uDC65 المجموعات",
   "sessions.config.ignore.channels.title": "\uD83D\uDCE2 القنوات",
+  "sessions.config.ignore.broadcast.title": "📡 Broadcast",
   "sessions.config.ignore.tooltip": "يقوم بتصفية جميع أحداث الدردشة ولا يخزن الرسائل في قاعدة البيانات. لا يزال بإمكانك إرسال الرسائل إلى هذه الدردشات عبر واجهة API، ولكن تأكيدات الرسائل (حدث message.ack) لن تكون متاحة.",
   "sessions.proxy": "البروكسي",
   "sessions.proxyOn": "البروكسي مفعل",

@@ -273,6 +273,7 @@
   "sessions.config.ignore.status.title": "🟢 স্ট্যাটাস",
   "sessions.config.ignore.groups.title": "\uD83D\uDC65 গ্রুপ",
   "sessions.config.ignore.channels.title": "\uD83D\uDCE2 চ্যানেল",
+  "sessions.config.ignore.broadcast.title": "📡 Broadcast",
   "sessions.config.ignore.tooltip": "সমস্ত চ্যাট ইভেন্ট ফিল্টার করে এবং বার্তাগুলি ডাটাবেসে সংরক্ষণ করে না। আপনি এখনও API এর মাধ্যমে এই চ্যাটগুলিতে বার্তা পাঠাতে পারেন, কিন্তু বার্তা প্রাপ্তি (message.ack ইভেন্ট) উপলব্ধ থাকবে না।",
   "sessions.proxy": "প্রক্সি",
   "sessions.proxyOn": "প্রক্সি চালু",

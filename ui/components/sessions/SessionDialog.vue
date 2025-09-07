@@ -39,6 +39,7 @@ const chatsFilterEnabled = ref(session.value.config?.ignore != null)
 const includeStatus = ref(!session.value.config?.ignore?.status)
 const includeGroups = ref(!session.value.config?.ignore?.groups)
 const includeChannels = ref(!session.value.config?.ignore?.channels)
+const includeBroadcast = ref(!session.value.config?.ignore?.broadcast)
 
 watch(session, async (newSession, _) => {
   proxyEnabled.value = newSession?.config?.proxy?.server
@@ -47,6 +48,7 @@ watch(session, async (newSession, _) => {
   includeStatus.value = !newSession?.config?.ignore?.status
   includeGroups.value = !newSession?.config?.ignore?.groups
   includeChannels.value = !newSession?.config?.ignore?.channels
+  includeBroadcast.value = !newSession?.config?.ignore?.broadcast
 })
 const submitted = ref(false);
 const loading = ref(false);
@@ -61,6 +63,7 @@ const sessionConfig = computed(
           status: !includeStatus.value,
           groups: !includeGroups.value,
           channels: !includeChannels.value,
+          broadcast: !includeBroadcast.value,
         }
       } else {
         config.ignore = undefined
@@ -354,6 +357,13 @@ async function copyRequest(event) {
               id="include-channels"
               :onLabel="'' + t('sessions.config.ignore.channels.title') + ': ' + t('sessions.config.ignore.on')"
               :offLabel="'' + t('sessions.config.ignore.channels.title') + ': ' + t('sessions.config.ignore.off')"
+          >
+          </ToggleButton>
+          <ToggleButton
+              v-model="includeBroadcast"
+              id="include-broadcast"
+              :onLabel="'' + t('sessions.config.ignore.broadcast.title') + ': ' + t('sessions.config.ignore.on')"
+              :offLabel="'' + t('sessions.config.ignore.broadcast.title') + ': ' + t('sessions.config.ignore.off')"
           >
           </ToggleButton>
         </div>

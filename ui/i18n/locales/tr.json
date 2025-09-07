@@ -273,6 +273,7 @@
   "sessions.config.ignore.status.title": "🟢 Durum",
   "sessions.config.ignore.groups.title": "\uD83D\uDC65 Gruplar",
   "sessions.config.ignore.channels.title": "\uD83D\uDCE2 Kanallar",
+  "sessions.config.ignore.broadcast.title": "📡 Broadcast",
   "sessions.config.ignore.tooltip": "Tüm sohbet olaylarını filtreler ve mesajları veritabanında saklamaz. API üzerinden bu sohbetlere mesaj göndermeye devam edebilirsiniz, ancak mesaj onayları (message.ack olayı) mevcut olmayacaktır.",
   "sessions.proxy": "Proxy",
   "sessions.proxyOn": "Proxy Açık",

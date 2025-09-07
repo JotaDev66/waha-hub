@@ -273,6 +273,7 @@
   "sessions.config.ignore.status.title": "🟢 Status",
   "sessions.config.ignore.groups.title": "\uD83D\uDC65 Grup",
   "sessions.config.ignore.channels.title": "\uD83D\uDCE2 Kanal",
+  "sessions.config.ignore.broadcast.title": "📡 Broadcast",
   "sessions.config.ignore.tooltip": "Menyaring semua event obrolan dan tidak menyimpan pesan ke database. Anda masih dapat mengirim pesan ke obrolan tersebut melalui API, namun tanda terima pesan (event message.ack) tidak akan tersedia.",
   "sessions.proxy": "Proxy",
   "sessions.proxyOn": "Proxy Aktif",

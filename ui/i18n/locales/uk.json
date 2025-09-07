@@ -273,6 +273,7 @@
   "sessions.config.ignore.status.title": "🟢 Статус",
   "sessions.config.ignore.groups.title": "\uD83D\uDC65 Групи",
   "sessions.config.ignore.channels.title": "\uD83D\uDCE2 Канали",
+  "sessions.config.ignore.broadcast.title": "📡 Broadcast",
   "sessions.config.ignore.tooltip": "Відфільтровує всі події чатів і не зберігає повідомлення в базі даних. Ви все ще можете надсилати повідомлення до цих чатів через API, але підтвердження повідомлень (подія message.ack) недоступні.",
   "sessions.proxy": "Проксі",
   "sessions.proxyOn": "Проксі Увімкнено",

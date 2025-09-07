@@ -273,6 +273,7 @@
   "sessions.config.ignore.status.title": "🟢 状态",
   "sessions.config.ignore.groups.title": "\uD83D\uDC65 群组",
   "sessions.config.ignore.channels.title": "\uD83D\uDCE2 频道",
+  "sessions.config.ignore.broadcast.title": "📡 Broadcast",
   "sessions.config.ignore.tooltip": "过滤掉所有聊天事件，并且不在数据库中存储消息。您仍可通过 API 向这些聊天发送消息，但消息回执（message.ack 事件）将不可用。",
   "sessions.proxy": "代理",
   "sessions.proxyOn": "代理 开",

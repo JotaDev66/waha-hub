@@ -273,6 +273,7 @@
   "sessions.config.ignore.status.title": "🟢 Status",
   "sessions.config.ignore.groups.title": "\uD83D\uDC65 Groups",
   "sessions.config.ignore.channels.title": "\uD83D\uDCE2 Channels",
+  "sessions.config.ignore.broadcast.title": "📡 Broadcast",
   "sessions.config.ignore.tooltip": "Filters out all chat events and does not store messages in the database. You can still send messages to those chats via the API, but message acknowledgements (message.ack event) will not be available.",
   "sessions.proxy": "Proxy",
   "sessions.proxyOn": "Proxy On",

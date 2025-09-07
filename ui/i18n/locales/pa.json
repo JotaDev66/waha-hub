@@ -273,6 +273,7 @@
   "sessions.config.ignore.status.title": "🟢 ਸਥਿਤੀ",
   "sessions.config.ignore.groups.title": "\uD83D\uDC65 ਗਰੁੱਪ",
   "sessions.config.ignore.channels.title": "\uD83D\uDCE2 ਚੈਨਲ",
+  "sessions.config.ignore.broadcast.title": "📡 Broadcast",
   "sessions.config.ignore.tooltip": "ਸਾਰੀਆਂ ਚੈਟ ਈਵੈਂਟਾਂ ਨੂੰ ਫਿਲਟਰ ਕਰਦਾ ਹੈ ਅਤੇ ਸੁਨੇਹੇ ਡਾਟਾਬੇਸ ਵਿੱਚ ਸਟੋਰ ਨਹੀਂ ਕਰਦਾ। ਤੁਸੀਂ ਹਾਲੇ ਵੀ API ਰਾਹੀਂ ਉਹਨਾਂ ਚੈਟਾਂ ਨੂੰ ਸੁਨੇਹੇ ਭੇਜ ਸਕਦੇ ਹੋ, ਪਰ ਸੁਨੇਹਾ ਪ੍ਰਾਪਤੀ ਦੀ ਪੁਸ਼ਟੀ (message.ack ਈਵੈਂਟ) ਉਪਲਬਧ ਨਹੀਂ ਹੋਏਗੀ.",
   "sessions.proxy": "ਪ੍ਰੌਕਸੀ",
   "sessions.proxyOn": "ਪ੍ਰੌਕਸੀ ਚਾਲੂ",

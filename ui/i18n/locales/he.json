@@ -273,6 +273,7 @@
   "sessions.config.ignore.status.title": "🟢 סטטוס",
   "sessions.config.ignore.groups.title": "\uD83D\uDC65 קבוצות",
   "sessions.config.ignore.channels.title": "\uD83D\uDCE2 ערוצים",
+  "sessions.config.ignore.broadcast.title": "📡 Broadcast",
   "sessions.config.ignore.tooltip": "מסנן את כל אירועי הצ'אט ואינו שומר הודעות במסד הנתונים. ניתן עדיין לשלוח הודעות לצ'אטים אלו דרך ה-API, אך אישורי מסירה (אירוע message.ack) לא יהיו זמינים.",
   "sessions.proxy": "פרוקסי",
   "sessions.proxyOn": "פרוקסי פעיל",

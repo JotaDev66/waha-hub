@@ -273,6 +273,7 @@
   "sessions.config.ignore.status.title": "🟢 स्थिति",
   "sessions.config.ignore.groups.title": "\uD83D\uDC65 समूह",
   "sessions.config.ignore.channels.title": "\uD83D\uDCE2 चैनल",
+  "sessions.config.ignore.broadcast.title": "📡 Broadcast",
   "sessions.config.ignore.tooltip": "सभी चैट ईवेंट्स को फ़िल्टर करता है और संदेशों को डेटाबेस में संग्रहीत नहीं करता। आप अभी भी API के माध्यम से इन चैट्स को संदेश भेज सकते हैं, लेकिन संदेश पुष्टि (message.ack ईवेंट) उपलब्ध नहीं होगी।",
   "sessions.proxy": "प्रॉक्सी",
   "sessions.proxyOn": "प्रॉक्सी चालू",

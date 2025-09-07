@@ -35,6 +35,7 @@ export interface IgnoreConfig {
     status?: boolean,
     groups?: boolean,
     channels?: boolean,
+    broadcast?: boolean,
 }
 
 export interface SessionConfig {
