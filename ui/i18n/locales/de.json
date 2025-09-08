@@ -78,6 +78,7 @@
   "apps.chatwoot.languageTooltip": "Dies ist die Integrationssprache, nicht die Chatwoot-Kontosprache. Sie können unterschiedlich sein.",
   "apps.chatwoot.selectLocale": "Gebietsschema auswählen",
   "apps.chatwoot.languageRequired": "Sprache ist erforderlich.",
+  "apps.chatwoot.whereToFindConfig": "👉 WhatsApp + ChatWoot - Konfigurationsanleitung",
   "apps.chatwoot.aboutApp": "Über die WAHA ChatWoot App",
   "apps.chatwoot.learnMore": "Erfahren Sie mehr über die WAHA ChatWoot App",
   "apps.chatwoot.webhookUrl": "ChatWoot Posteingang - Webhook-URL",
@@ -378,5 +379,9 @@
   "serverStore.sessionNotFound": "Sitzung nicht gefunden - '{sessionName}' auf '{serverName}'",
   "serverStore.connectionFailed": "Serververbindung fehlgeschlagen",
   "serverStore.serverNotConnected": "{serverName} ({serverUrl}) ist nicht verbunden.\nBitte stellen Sie sicher, dass er online ist und der richtige API-Schlüssel in der Konfiguration festgelegt ist.",
-  "serverStore.failedToRefreshServer": "Server konnte nicht aktualisiert werden - {serverId}"
+  "serverStore.failedToRefreshServer": "Server konnte nicht aktualisiert werden - {serverId}",
+  "apps.enabled.label.list": "Status",
+  "apps.enabled.label.edit": "App-Status",
+  "apps.enabled.on": "Aktiviert",
+  "apps.enabled.off": "Deaktiviert"
 }

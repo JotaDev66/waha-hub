@@ -78,6 +78,7 @@
   "apps.chatwoot.languageTooltip": "זוהי שפת האינטגרציה, לא שפת חשבון Chatwoot. הן יכולות להיות שונות.",
   "apps.chatwoot.selectLocale": "בחר שפה",
   "apps.chatwoot.languageRequired": "שפה נדרשת.",
+  "apps.chatwoot.whereToFindConfig": "👉 WhatsApp + ChatWoot - מדריך הגדרה",
   "apps.chatwoot.aboutApp": "אודות יישום WAHA ChatWoot",
   "apps.chatwoot.learnMore": "למד עוד על יישום WAHA ChatWoot",
   "apps.chatwoot.webhookUrl": "תיבת דואר נכנס של ChatWoot - כתובת Webhook",
@@ -378,5 +379,9 @@
   "serverStore.sessionNotFound": "הפעלה לא נמצאה - '{sessionName}' ב-'{serverName}'",
   "serverStore.connectionFailed": "חיבור לשרת נכשל",
   "serverStore.serverNotConnected": "{serverName} ({serverUrl}) אינו מחובר.\nאנא ודא שהוא מקוון והגדר את מפתח ה-API הנכון בתצורה.",
-  "serverStore.failedToRefreshServer": "רענון השרת נכשל - {serverId}"
+  "serverStore.failedToRefreshServer": "רענון השרת נכשל - {serverId}",
+  "apps.enabled.label.list": "סטטוס",
+  "apps.enabled.label.edit": "סטטוס האפליקציה",
+  "apps.enabled.on": "מופעל",
+  "apps.enabled.off": "מושבת"
 }

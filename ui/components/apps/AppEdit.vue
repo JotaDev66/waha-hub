@@ -56,6 +56,17 @@ const app = computed({
   set: (value) => emit('update:modelValue', value)
 });
 
+// Enabled toggle directly maps to `enabled` API field
+const enabled = computed({
+  get: () => app.value?.enabled === undefined ? true : !!app.value.enabled,
+  set: (val: boolean) => {
+    app.value = {
+      ...app.value,
+      enabled: val,
+    } as App;
+  }
+});
+
 const appTypes = ref([
   { 
     name: 'ChatWoot', 
@@ -73,6 +84,13 @@ watch(() => app.value, (newApp) => {
       ...newApp,
       id: generateAppId()
     };
+  }
+  // Ensure enabled has a default (true)
+  if (newApp.enabled === undefined) {
+    app.value = {
+      ...newApp,
+      enabled: true,
+    } as App;
   }
 }, { immediate: true });
 
@@ -152,6 +170,19 @@ function cancel() {
           </template>
         </Dropdown>
         <small class="p-error" v-if="submitted && !app.app">{{ t('apps.appTypeRequired') }}</small>
+      </div>
+
+      <div class="field">
+        <label><b>{{ t('apps.enabled.label.edit') }}</b></label>
+        <div>
+          <ToggleButton
+            v-model="enabled"
+            onIcon="pi pi-check"
+            offIcon="pi pi-times"
+            :onLabel="t('apps.enabled.on')"
+            :offLabel="t('apps.enabled.off')"
+          />
+        </div>
       </div>
 
       <div class="field" v-if="app.app">

@@ -78,6 +78,7 @@
   "apps.chatwoot.languageTooltip": "Bu, Chatwoot hesap dili değil, entegrasyon dilidir. Bunlar farklı olabilir.",
   "apps.chatwoot.selectLocale": "Yerel Ayar Seçin",
   "apps.chatwoot.languageRequired": "Dil gereklidir.",
+  "apps.chatwoot.whereToFindConfig": "👉 WhatsApp + ChatWoot - Yapılandırma Kılavuzu",
   "apps.chatwoot.aboutApp": "WAHA ChatWoot Uygulaması Hakkında",
   "apps.chatwoot.learnMore": "WAHA ChatWoot Uygulaması hakkında daha fazla bilgi edinin",
   "apps.chatwoot.webhookUrl": "ChatWoot Gelen Kutusu - Webhook URL",
@@ -378,5 +379,9 @@
   "serverStore.sessionNotFound": "Oturum bulunamadı - '{sessionName}' şurada '{serverName}'",
   "serverStore.connectionFailed": "Sunucu bağlantısı başarısız oldu",
   "serverStore.serverNotConnected": "{serverName} ({serverUrl}) bağlı değil.\nLütfen çevrimiçi olduğundan ve yapılandırmada doğru API anahtarının ayarlandığından emin olun.",
-  "serverStore.failedToRefreshServer": "Sunucu yenilenemedi - {serverId}"
+  "serverStore.failedToRefreshServer": "Sunucu yenilenemedi - {serverId}",
+  "apps.enabled.label.list": "Durum",
+  "apps.enabled.label.edit": "Uygulama Durumu",
+  "apps.enabled.on": "Etkin",
+  "apps.enabled.off": "Devre Dışı"
 }

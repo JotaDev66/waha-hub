@@ -78,6 +78,7 @@
   "apps.chatwoot.languageTooltip": "هذه هي لغة التكامل، وليست لغة حساب Chatwoot. يمكن أن تكون مختلفة.",
   "apps.chatwoot.selectLocale": "اختر اللغة",
   "apps.chatwoot.languageRequired": "اللغة مطلوبة.",
+  "apps.chatwoot.whereToFindConfig": "👉 واتساب + ChatWoot - دليل الإعداد",
   "apps.chatwoot.aboutApp": "حول تطبيق WAHA ChatWoot",
   "apps.chatwoot.learnMore": "تعرف على المزيد حول تطبيق WAHA ChatWoot",
   "apps.chatwoot.webhookUrl": "ChatWoot Inbox - رابط Webhook",
@@ -378,5 +379,9 @@
   "serverStore.sessionNotFound": "لم يتم العثور على الجلسة - '{sessionName}' على '{serverName}'",
   "serverStore.connectionFailed": "فشل الاتصال بالخادم",
   "serverStore.serverNotConnected": "{serverName} ({serverUrl}) غير متصل.\nالرجاء التأكد من أنه متصل بالإنترنت وتم تعيين مفتاح API الصحيح في الإعدادات.",
-  "serverStore.failedToRefreshServer": "فشل تحديث الخادم - {serverId}"
+  "serverStore.failedToRefreshServer": "فشل تحديث الخادم - {serverId}",
+  "apps.enabled.label.list": "الحالة",
+  "apps.enabled.label.edit": "حالة التطبيق",
+  "apps.enabled.on": "مفعل",
+  "apps.enabled.off": "معطل"
 }

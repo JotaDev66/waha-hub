@@ -5,6 +5,7 @@ import { ChatWootAppConfig, Locale } from '../../services/waha/dtos';
 import useShowToastOnResult from '../../composables/useShowToastOnResult';
 import ChatWootLabel from '../common/ChatWootLabel.vue';
 import { useI18n } from 'vue-i18n';
+import InlineMessage from 'primevue/inlinemessage';
 
 const { t } = useI18n();
 
@@ -69,6 +70,13 @@ async function loadLocales() {
 
 <template>
   <div class="chatwoot-config">
+    <div class="mb-3">
+      <InlineMessage severity="info">
+        <a href="https://waha.devlike.pro/blog/apps-chatwoot-config/" target="_blank" rel="noopener noreferrer">
+          {{ t('apps.chatwoot.whereToFindConfig') }}
+        </a>
+      </InlineMessage>
+    </div>
     <div class="field">
       <label for="url">{{ t('apps.chatwoot.url') }}</label>
       <InputText 
@@ -161,6 +169,7 @@ async function loadLocales() {
         :placeholder="t('apps.chatwoot.selectLocale')"
         :loading="loading"
         :class="{'p-invalid': submitted && !config.locale}"
+        scrollHeight="400px"
       />
       <small class="p-error" v-if="submitted && !config.locale">{{ t('apps.chatwoot.languageRequired') }}</small>
     </div>

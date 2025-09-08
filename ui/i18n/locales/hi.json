@@ -78,6 +78,7 @@
   "apps.chatwoot.languageTooltip": "यह इंटीग्रेशन भाषा है, न कि Chatwoot अकाउंट भाषा। वे अलग-अलग हो सकते हैं।",
   "apps.chatwoot.selectLocale": "लोकेल चुनें",
   "apps.chatwoot.languageRequired": "भाषा आवश्यक है।",
+  "apps.chatwoot.whereToFindConfig": "👉 WhatsApp + ChatWoot - कॉन्फ़िगरेशन गाइड",
   "apps.chatwoot.aboutApp": "WAHA ChatWoot ऐप के बारे में",
   "apps.chatwoot.learnMore": "WAHA ChatWoot ऐप के बारे में अधिक जानें",
   "apps.chatwoot.webhookUrl": "ChatWoot इनबॉक्स - वेबहुक URL",
@@ -378,5 +379,9 @@
   "serverStore.sessionNotFound": "सेशन नहीं मिला - '{sessionName}' '{serverName}' पर",
   "serverStore.connectionFailed": "सर्वर कनेक्शन विफल",
   "serverStore.serverNotConnected": "{serverName} ({serverUrl}) कनेक्टेड नहीं है।\nकृपया सुनिश्चित करें कि यह ऑनलाइन है और कॉन्फ़िगरेशन में सही API की सेट है।",
-  "serverStore.failedToRefreshServer": "सर्वर रिफ्रेश करने में विफल - {serverId}"
+  "serverStore.failedToRefreshServer": "सर्वर रिफ्रेश करने में विफल - {serverId}",
+  "apps.enabled.label.list": "स्थिति",
+  "apps.enabled.label.edit": "ऐप स्थिति",
+  "apps.enabled.on": "सक्षम",
+  "apps.enabled.off": "अक्षम"
 }

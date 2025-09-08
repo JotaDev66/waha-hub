@@ -78,6 +78,7 @@
   "apps.chatwoot.languageTooltip": "یہ انضمام کی زبان ہے، چیٹ ووٹ اکاؤنٹ کی زبان نہیں۔ وہ مختلف ہو سکتے ہیں۔",
   "apps.chatwoot.selectLocale": "مقامی زبان منتخب کریں",
   "apps.chatwoot.languageRequired": "زبان درکار ہے۔",
+  "apps.chatwoot.whereToFindConfig": "👉 واٹس ایپ + ChatWoot - کنفیگریشن گائیڈ",
   "apps.chatwoot.aboutApp": "واہا چیٹ ووٹ ایپ کے بارے میں",
   "apps.chatwoot.learnMore": "واہا چیٹ ووٹ ایپ کے بارے میں مزید جانیں",
   "apps.chatwoot.webhookUrl": "چیٹ ووٹ ان باکس - ویب ہک یو آر ایل",
@@ -375,5 +376,9 @@
   "serverStore.sessionNotFound": "سیشن نہیں ملا - '{sessionName}' '{serverName}' پر",
   "serverStore.connectionFailed": "سرور کنکشن ناکام ہو گیا",
   "serverStore.serverNotConnected": "{serverName} ({serverUrl}) منسلک نہیں ہے۔\nبراہ کرم یقینی بنائیں کہ یہ آن لائن ہے اور ترتیب میں درست اے پی آئی کلید سیٹ کریں۔",
-  "serverStore.failedToRefreshServer": "سرور کو ریفریش کرنے میں ناکام - {serverId}"
+  "serverStore.failedToRefreshServer": "سرور کو ریفریش کرنے میں ناکام - {serverId}",
+  "apps.enabled.label.list": "حالت",
+  "apps.enabled.label.edit": "ایپ کی حالت",
+  "apps.enabled.on": "فعال",
+  "apps.enabled.off": "غیر فعال"
 }

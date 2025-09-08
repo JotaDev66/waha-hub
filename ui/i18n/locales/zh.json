@@ -78,6 +78,7 @@
   "apps.chatwoot.languageTooltip": "这是集成语言，不是 Chatwoot 账户语言，它们可以不同。",
   "apps.chatwoot.selectLocale": "选择语言",
   "apps.chatwoot.languageRequired": "语言为必填项。",
+  "apps.chatwoot.whereToFindConfig": "👉 WhatsApp + ChatWoot - 配置指南",
   "apps.chatwoot.aboutApp": "关于 WAHA ChatWoot 应用",
   "apps.chatwoot.learnMore": "了解更多关于 WAHA ChatWoot 应用",
   "apps.chatwoot.webhookUrl": "ChatWoot 收件箱 - Webhook 地址",
@@ -378,5 +379,9 @@
   "serverStore.sessionNotFound": "未找到会话 - '{sessionName}' 于 '{serverName}'",
   "serverStore.connectionFailed": "服务器连接失败",
   "serverStore.serverNotConnected": "{serverName} ({serverUrl}) 未连接。\n请确保它在线并在配置中设置正确的 API 密钥。",
-  "serverStore.failedToRefreshServer": "刷新服务器失败 - {serverId}"
+  "serverStore.failedToRefreshServer": "刷新服务器失败 - {serverId}",
+  "apps.enabled.label.list": "状态",
+  "apps.enabled.label.edit": "应用状态",
+  "apps.enabled.on": "启用",
+  "apps.enabled.off": "禁用"
 }

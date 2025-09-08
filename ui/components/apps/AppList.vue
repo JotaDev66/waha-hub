@@ -73,7 +73,8 @@ function openNewApp() {
     id: generateAppId(),
     session: props.session.name,
     app: "chatwoot",
-    config: {}
+    config: {},
+    enabled: true,
   };
   isNewApp.value = true;
   appDialog.value = true;
@@ -221,6 +222,11 @@ function getAppTypeLabel(appType: string) {
         </template>
       </Column>
       <Column field="id" :header="t('apps.id')"></Column>
+      <Column :header="t('apps.enabled.label.list')" style="width: 10rem;">
+        <template #body="{ data }">
+          <AppStatusTag :enabled="data.enabled !== false" />
+        </template>
+      </Column>
       <Column style="width: 10rem; text-align: right;">
         <template #body="{ data }">
           <div class="flex gap-2 justify-content-end">

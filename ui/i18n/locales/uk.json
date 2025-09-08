@@ -78,6 +78,7 @@
   "apps.chatwoot.languageTooltip": "Це мова інтеграції, а не мова облікового запису Chatwoot. Вони можуть відрізнятися.",
   "apps.chatwoot.selectLocale": "Виберіть локаль",
   "apps.chatwoot.languageRequired": "Мова обов'язкова.",
+  "apps.chatwoot.whereToFindConfig": "👉 WhatsApp + ChatWoot - Посібник з налаштування",
   "apps.chatwoot.aboutApp": "Про додаток WAHA ChatWoot",
   "apps.chatwoot.learnMore": "Дізнайтеся більше про додаток WAHA ChatWoot",
   "apps.chatwoot.webhookUrl": "ChatWoot Inbox - URL вебхуку",
@@ -378,5 +379,9 @@
   "serverStore.sessionNotFound": "Сесію не знайдено - '{sessionName}' на '{serverName}'",
   "serverStore.connectionFailed": "Помилка підключення до сервера",
   "serverStore.serverNotConnected": "{serverName} ({serverUrl}) не підключено.\nБудь ласка, переконайтеся, що він онлайн та встановіть правильний API-ключ у конфігурації.",
-  "serverStore.failedToRefreshServer": "Не вдалося оновити сервер - {serverId}"
+  "serverStore.failedToRefreshServer": "Не вдалося оновити сервер - {serverId}",
+  "apps.enabled.label.list": "Статус",
+  "apps.enabled.label.edit": "Статус додатку",
+  "apps.enabled.on": "Увімкнено",
+  "apps.enabled.off": "Вимкнено"
 }

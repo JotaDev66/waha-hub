@@ -78,6 +78,7 @@
   "apps.chatwoot.languageTooltip": "این زبان ادغام است، نه زبان حساب چت‌ووت. آنها می‌توانند متفاوت باشند.",
   "apps.chatwoot.selectLocale": "انتخاب زبان محلی",
   "apps.chatwoot.languageRequired": "زبان الزامی است.",
+  "apps.chatwoot.whereToFindConfig": "👉 واتساپ + ChatWoot - راهنمای پیکربندی",
   "apps.chatwoot.aboutApp": "درباره برنامه چت‌ووت واها",
   "apps.chatwoot.learnMore": "درباره برنامه چت‌ووت واها بیشتر بدانید",
   "apps.chatwoot.webhookUrl": "صندوق ورودی چت‌ووت - آدرس وب‌هوک",
@@ -378,5 +379,9 @@
   "serverStore.sessionNotFound": "جلسه یافت نشد - '{sessionName}' در '{serverName}'",
   "serverStore.connectionFailed": "اتصال سرور ناموفق بود",
   "serverStore.serverNotConnected": "{serverName} ({serverUrl}) متصل نیست.\nلطفاً مطمئن شوید که آنلاین است و کلید API صحیح را در پیکربندی تنظیم کرده‌اید.",
-  "serverStore.failedToRefreshServer": "تازه‌سازی سرور ناموفق بود - {serverId}"
+  "serverStore.failedToRefreshServer": "تازه‌سازی سرور ناموفق بود - {serverId}",
+  "apps.enabled.label.list": "وضعیت",
+  "apps.enabled.label.edit": "وضعیت برنامه",
+  "apps.enabled.on": "فعال",
+  "apps.enabled.off": "غیرفعال"
 }

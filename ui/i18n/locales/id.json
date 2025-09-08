@@ -78,6 +78,7 @@
   "apps.chatwoot.languageTooltip": "Ini adalah bahasa integrasi, bukan bahasa akun Chatwoot. Keduanya bisa berbeda.",
   "apps.chatwoot.selectLocale": "Pilih Lokal",
   "apps.chatwoot.languageRequired": "Bahasa diperlukan.",
+  "apps.chatwoot.whereToFindConfig": "👉 WhatsApp + ChatWoot - Panduan Konfigurasi",
   "apps.chatwoot.aboutApp": "Tentang Aplikasi WAHA ChatWoot",
   "apps.chatwoot.learnMore": "Pelajari lebih lanjut tentang Aplikasi WAHA ChatWoot",
   "apps.chatwoot.webhookUrl": "Kotak Masuk ChatWoot - URL Webhook",
@@ -378,5 +379,9 @@
   "serverStore.sessionNotFound": "Sesi tidak ditemukan - '{sessionName}' di '{serverName}'",
   "serverStore.connectionFailed": "Koneksi server gagal",
   "serverStore.serverNotConnected": "{serverName} ({serverUrl}) tidak terhubung.\nHarap pastikan online dan atur kunci API yang benar dalam konfigurasi.",
-  "serverStore.failedToRefreshServer": "Gagal menyegarkan server - {serverId}"
+  "serverStore.failedToRefreshServer": "Gagal menyegarkan server - {serverId}",
+  "apps.enabled.label.list": "Status",
+  "apps.enabled.label.edit": "Status Aplikasi",
+  "apps.enabled.on": "Diaktifkan",
+  "apps.enabled.off": "Dinonaktifkan"
 }

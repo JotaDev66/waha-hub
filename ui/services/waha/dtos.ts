@@ -82,6 +82,8 @@ export interface App {
     session: string;
     app: string;
     config: any;
+    // If true, the app is enabled. Optional for backward compatibility
+    enabled?: boolean;
 }
 
 export interface ChatWootAppConfig {
