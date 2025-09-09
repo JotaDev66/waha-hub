@@ -93,9 +93,15 @@ export interface ChatWootAppConfig {
     inboxId: number;
     inboxIdentifier: string;
     locale: string;
+    commands?: ChatWootCommandsConfig;
 }
 
 export interface Locale {
     name: string;
     locale: string;
+}
+
+// App-level commands configuration
+export interface ChatWootCommandsConfig {
+    server: boolean;
 }

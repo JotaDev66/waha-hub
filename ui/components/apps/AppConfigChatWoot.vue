@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import { ref, computed, onMounted } from 'vue';
-import { useServerStore } from '../../stores/useServerStore';
-import { ChatWootAppConfig, Locale } from '../../services/waha/dtos';
+import {ref, onMounted, reactive, watch} from 'vue';
+import {useServerStore} from '../../stores/useServerStore';
+import {ChatWootAppConfig, Locale} from '../../services/waha/dtos';
 import useShowToastOnResult from '../../composables/useShowToastOnResult';
-import ChatWootLabel from '../common/ChatWootLabel.vue';
-import { useI18n } from 'vue-i18n';
+import {useI18n} from 'vue-i18n';
 import InlineMessage from 'primevue/inlinemessage';
+import lodash from 'lodash';
 
-const { t } = useI18n();
+const {t} = useI18n();
 
 const props = defineProps({
   modelValue: {
@@ -29,17 +29,30 @@ const emit = defineEmits(['update:modelValue']);
 const store = useServerStore();
 const req = useShowToastOnResult();
 
-const config = computed({
-  get: () => props.modelValue || {
-    url: '',
-    accountId: 0,
-    accountToken: '',
-    inboxId: 0,
-    inboxIdentifier: '',
-    locale: 'en-US'
-  },
-  set: (value) => emit('update:modelValue', value)
-});
+const defaults: ChatWootAppConfig = {
+  url: '',
+  accountId: null,
+  accountToken: '',
+  inboxId: null,
+  inboxIdentifier: '',
+  locale: 'en-US',
+  commands: {
+    server: true,
+  }
+};
+
+
+const config = reactive<ChatWootAppConfig>(
+    lodash.defaultsDeep({}, lodash.cloneDeep(props.modelValue ?? {}), defaults)
+)
+watch(
+    config,
+    (val) => {
+      const out = lodash.cloneDeep(val)
+      emit('update:modelValue', out)
+    },
+    {deep: true}
+)
 
 const locales = ref<Locale[]>([]);
 const loading = ref(false);
@@ -56,9 +69,9 @@ async function loadLocales() {
   try {
     loading.value = true;
     locales.value = await req(
-      store.getAppChatWootLocales(props.server.id),
-      undefined,
-      t('apps.chatwoot.failedToLoadLocales')
+        store.getAppChatWootLocales(props.server.id),
+        undefined,
+        t('apps.chatwoot.failedToLoadLocales')
     );
   } catch (error) {
     console.error("Error loading locales:", error);
@@ -79,11 +92,11 @@ async function loadLocales() {
     </div>
     <div class="field">
       <label for="url">{{ t('apps.chatwoot.url') }}</label>
-      <InputText 
-        id="url" 
-        v-model="config.url" 
-        placeholder="https://app.chatwoot.com"
-        :class="{'p-invalid': submitted && !config.url}"
+      <InputText
+          id="url"
+          v-model="config.url"
+          placeholder="https://app.chatwoot.com"
+          :class="{'p-invalid': submitted && !config.url}"
       />
       <small class="p-error" v-if="submitted && !config.url">{{ t('apps.chatwoot.urlRequired') }}</small>
     </div>
@@ -92,27 +105,31 @@ async function loadLocales() {
       <div class="col-6">
         <div class="field">
           <label for="accountId">{{ t('apps.chatwoot.accountId') }}</label>
-          <InputNumber 
-            id="accountId" 
-            v-model="config.accountId" 
-            :placeholder="t('apps.chatwoot.accountIdPlaceholder')"
-            :class="{'p-invalid': submitted && !config.accountId}"
+          <InputNumber
+              id="accountId"
+              v-model="config.accountId"
+              :placeholder="t('apps.chatwoot.accountIdPlaceholder')"
+              :class="{'p-invalid': submitted && !config.accountId}"
           />
-          <small class="p-error" v-if="submitted && !config.accountId">{{ t('apps.chatwoot.accountIdRequired') }}</small>
+          <small class="p-error" v-if="submitted && !config.accountId">{{
+              t('apps.chatwoot.accountIdRequired')
+            }}</small>
         </div>
       </div>
       <div class="col-6">
         <div class="field">
           <label for="accountToken">{{ t('apps.chatwoot.accountToken') }}</label>
-          <Password 
-            id="accountToken" 
-            v-model="config.accountToken" 
-            :placeholder="t('apps.chatwoot.accountTokenPlaceholder')"
-            :feedback="false"
-            toggleMask
-            :class="{'p-invalid': submitted && !config.accountToken}"
+          <Password
+              id="accountToken"
+              v-model="config.accountToken"
+              :placeholder="t('apps.chatwoot.accountTokenPlaceholder')"
+              :feedback="false"
+              toggleMask
+              :class="{'p-invalid': submitted && !config.accountToken}"
           />
-          <small class="p-error" v-if="submitted && !config.accountToken">{{ t('apps.chatwoot.accountTokenRequired') }}</small>
+          <small class="p-error" v-if="submitted && !config.accountToken">{{
+              t('apps.chatwoot.accountTokenRequired')
+            }}</small>
         </div>
       </div>
     </div>
@@ -123,15 +140,15 @@ async function loadLocales() {
           <label for="inboxId">
             {{ t('apps.chatwoot.inboxId') }}
             <i
-              class="pi pi-info-circle"
-              v-tooltip="t('apps.chatwoot.inboxIdTooltip')"
+                class="pi pi-info-circle"
+                v-tooltip="t('apps.chatwoot.inboxIdTooltip')"
             />
           </label>
-          <InputNumber 
-            id="inboxId" 
-            v-model="config.inboxId" 
-            :placeholder="t('apps.chatwoot.inboxIdPlaceholder')"
-            :class="{'p-invalid': submitted && !config.inboxId}"
+          <InputNumber
+              id="inboxId"
+              v-model="config.inboxId"
+              :placeholder="t('apps.chatwoot.inboxIdPlaceholder')"
+              :class="{'p-invalid': submitted && !config.inboxId}"
           />
           <small class="p-error" v-if="submitted && !config.inboxId">{{ t('apps.chatwoot.inboxIdRequired') }}</small>
         </div>
@@ -139,15 +156,16 @@ async function loadLocales() {
       <div class="col-6">
         <div class="field">
           <label for="inboxIdentifier">{{ t('apps.chatwoot.inboxIdentifier') }}</label>
-          <Password 
-            id="inboxIdentifier" 
-            v-model="config.inboxIdentifier" 
-            :placeholder="t('apps.chatwoot.inboxIdentifierPlaceholder')"
-            :feedback="false"
-            toggleMask
-            :class="{'p-invalid': submitted && !config.inboxIdentifier}"
+          <Password
+              id="inboxIdentifier"
+              v-model="config.inboxIdentifier"
+              :placeholder="t('apps.chatwoot.inboxIdentifierPlaceholder')"
+              :feedback="false"
+              toggleMask
+              :class="{'p-invalid': submitted && !config.inboxIdentifier}"
           />
-          <small class="p-error" v-if="submitted && !config.inboxIdentifier">{{ t('apps.chatwoot.inboxIdentifierRequired') }}</small>
+          <small class="p-error"
+                 v-if="submitted && !config.inboxIdentifier">{{ t('apps.chatwoot.inboxIdentifierRequired') }}</small>
         </div>
       </div>
     </div>
@@ -156,22 +174,41 @@ async function loadLocales() {
       <label for="locale">
         {{ t('apps.chatwoot.language') }}
         <i
-          class="pi pi-info-circle"
-          v-tooltip="t('apps.chatwoot.languageTooltip')"
+            class="pi pi-info-circle"
+            v-tooltip="t('apps.chatwoot.languageTooltip')"
         />
       </label>
-      <Dropdown 
-        id="locale" 
-        v-model="config.locale" 
-        :options="locales" 
-        optionLabel="name" 
-        optionValue="locale"
-        :placeholder="t('apps.chatwoot.selectLocale')"
-        :loading="loading"
-        :class="{'p-invalid': submitted && !config.locale}"
-        scrollHeight="400px"
+      <Dropdown
+          id="locale"
+          v-model="config.locale"
+          :options="locales"
+          optionLabel="name"
+          optionValue="locale"
+          :placeholder="t('apps.chatwoot.selectLocale')"
+          :loading="loading"
+          :class="{'p-invalid': submitted && !config.locale}"
+          scrollHeight="400px"
       />
       <small class="p-error" v-if="submitted && !config.locale">{{ t('apps.chatwoot.languageRequired') }}</small>
+    </div>
+
+    <div class="field">
+      <label>
+        {{ t('apps.chatwoot.commands.title') }}
+        <i
+            class="pi pi-info-circle"
+            v-tooltip="t('apps.chatwoot.commands.tooltip')"
+        />
+      </label>
+      <div>
+        <ToggleButton
+            v-model="config.commands.server"
+            onIcon="pi pi-check"
+            offIcon="pi pi-times"
+            :onLabel="t('apps.chatwoot.commands.server.on')"
+            :offLabel="t('apps.chatwoot.commands.server.off')"
+        />
+      </div>
     </div>
   </div>
 </template>
