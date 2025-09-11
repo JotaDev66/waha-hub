@@ -94,8 +94,16 @@ async function loadLocales() {
   <div class="chatwoot-config">
     <div class="mb-3">
       <InlineMessage severity="info">
+        <span>
+            {{ t('apps.chatwoot.help.header') }}
+        </span>
+        <br/>
+        <a href="http://waha.devlike.pro/docs/apps/chatwoot/" target="_blank" rel="noopener noreferrer">
+          {{ t('apps.chatwoot.help.ChatWootAppPage') }}
+        </a>
+        <br/>
         <a href="https://waha.devlike.pro/blog/apps-chatwoot-config/" target="_blank" rel="noopener noreferrer">
-          {{ t('apps.chatwoot.whereToFindConfig') }}
+          {{ t('apps.chatwoot.help.ChatWootConfigArticle') }}
         </a>
       </InlineMessage>
     </div>
