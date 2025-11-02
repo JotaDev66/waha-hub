@@ -126,6 +126,8 @@
   "apps.chatwoot.commands.tooltip": "Виберіть, які команди будуть доступні в чаті інтеграції WhatsApp. Вимкніть ті, які ви не хочете, щоб агенти виконували.",
   "apps.chatwoot.commands.server.on": "🔧 Сервер: Увімкнено",
   "apps.chatwoot.commands.server.off": "🔧 Сервер: Вимкнено",
+  "apps.chatwoot.commands.queue.on": "🧩 Черга: Увімкнено",
+  "apps.chatwoot.commands.queue.off": "🧩 Черга: Вимкнено",
   "whatsapp.MoreOptions": "Більше опцій",
   "whatsapp.Settings": "Налаштування",
   "whatsapp.LinkedDevices": "Пов'язані пристрої",

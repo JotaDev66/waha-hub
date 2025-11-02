@@ -126,6 +126,8 @@
   "apps.chatwoot.commands.tooltip": "בחר אילו פקודות יהיו זמינות בצ׳אט האינטגרציה של WhatsApp. השבת פקודות שאינך רוצה שסוכנים יבצעו.",
   "apps.chatwoot.commands.server.on": "🔧 שרת: פועל",
   "apps.chatwoot.commands.server.off": "🔧 שרת: כבוי",
+  "apps.chatwoot.commands.queue.on": "🧩 תור: פעיל",
+  "apps.chatwoot.commands.queue.off": "🧩 תור: כבוי",
   "whatsapp.MoreOptions": "אפשרויות נוספות",
   "whatsapp.Settings": "הגדרות",
   "whatsapp.LinkedDevices": "מכשירים מקושרים",

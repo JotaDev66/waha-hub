@@ -126,6 +126,8 @@
   "apps.chatwoot.commands.tooltip": "WhatsApp انٹیگریشن چیٹ میں کون سی کمانڈز دستیاب ہوں گی منتخب کریں۔ جو کمانڈز آپ ایجنٹس سے نہیں چلوانا چاہتے انہیں غیر فعال کریں۔",
   "apps.chatwoot.commands.server.on": "🔧 سرور: آن",
   "apps.chatwoot.commands.server.off": "🔧 سرور: آف",
+  "apps.chatwoot.commands.queue.on": "🧩 قطار: آن",
+  "apps.chatwoot.commands.queue.off": "🧩 قطار: آف",
   "whatsapp.MoreOptions": "مزید اختیارات",
   "whatsapp.Settings": "ترتیبات",
   "whatsapp.LinkedDevices": "منسلک آلات",

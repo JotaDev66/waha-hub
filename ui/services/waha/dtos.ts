@@ -116,6 +116,7 @@ export interface Locale {
 // App-level commands configuration
 export interface ChatWootCommandsConfig {
     server: boolean;
+    queue?: boolean;
 }
 
 // Conversations configuration for ChatWoot app

@@ -126,6 +126,8 @@
   "apps.chatwoot.commands.tooltip": "Choisissez les commandes disponibles dans le chat d’intégration WhatsApp. Désactivez celles que vous ne souhaitez pas que les agents exécutent.",
   "apps.chatwoot.commands.server.on": "🔧 Serveur : Activé",
   "apps.chatwoot.commands.server.off": "🔧 Serveur : Désactivé",
+  "apps.chatwoot.commands.queue.on": "🧩 File d'attente : Activée",
+  "apps.chatwoot.commands.queue.off": "🧩 File d'attente : Désactivée",
   "whatsapp.MoreOptions": "Plus d'options",
   "whatsapp.Settings": "Paramètres",
   "whatsapp.LinkedDevices": "Appareils liés",

@@ -126,6 +126,8 @@
   "apps.chatwoot.commands.tooltip": "选择在 WhatsApp 集成聊天中可用的命令。禁用你不希望客服执行的命令。",
   "apps.chatwoot.commands.server.on": "🔧 服务器：开启",
   "apps.chatwoot.commands.server.off": "🔧 服务器：关闭",
+  "apps.chatwoot.commands.queue.on": "🧩 队列：开启",
+  "apps.chatwoot.commands.queue.off": "🧩 队列：关闭",
   "whatsapp.MoreOptions": "更多选项",
   "whatsapp.Settings": "设置",
   "whatsapp.LinkedDevices": "已链接设备",

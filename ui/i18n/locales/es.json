@@ -126,6 +126,8 @@
   "apps.chatwoot.commands.tooltip": "Elige qué comandos estarán disponibles en el chat de integración de WhatsApp. Desactiva los que no quieras que los agentes ejecuten.",
   "apps.chatwoot.commands.server.on": "🔧 Servidor: Activado",
   "apps.chatwoot.commands.server.off": "🔧 Servidor: Desactivado",
+  "apps.chatwoot.commands.queue.on": "🧩 Cola: Activada",
+  "apps.chatwoot.commands.queue.off": "🧩 Cola: Desactivada",
   "whatsapp.MoreOptions": "Más opciones",
   "whatsapp.Settings": "Configuración",
   "whatsapp.LinkedDevices": "Dispositivos vinculados",

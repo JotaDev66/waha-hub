@@ -126,6 +126,8 @@
   "apps.chatwoot.commands.tooltip": "اختر الأوامر المتاحة في دردشة تكامل واتساب. عطّل أي أوامر لا تريد أن ينفذها الوكلاء.",
   "apps.chatwoot.commands.server.on": "🔧 الخادم: تشغيل",
   "apps.chatwoot.commands.server.off": "🔧 الخادم: إيقاف",
+  "apps.chatwoot.commands.queue.on": "🧩 قائمة الانتظار: تشغيل",
+  "apps.chatwoot.commands.queue.off": "🧩 قائمة الانتظار: إيقاف",
   "whatsapp.MoreOptions": "خيارات إضافية",
   "whatsapp.Settings": "الإعدادات",
   "whatsapp.LinkedDevices": "الأجهزة المرتبطة",

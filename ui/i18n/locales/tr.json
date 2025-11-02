@@ -126,6 +126,8 @@
   "apps.chatwoot.commands.tooltip": "WhatsApp entegrasyon sohbetinde hangi komutların kullanılabilir olacağını seçin. Ajanların çalıştırmasını istemediğiniz komutları devre dışı bırakın.",
   "apps.chatwoot.commands.server.on": "🔧 Sunucu: Açık",
   "apps.chatwoot.commands.server.off": "🔧 Sunucu: Kapalı",
+  "apps.chatwoot.commands.queue.on": "🧩 Kuyruk: Açık",
+  "apps.chatwoot.commands.queue.off": "🧩 Kuyruk: Kapalı",
   "whatsapp.MoreOptions": "Daha Fazla Seçenek",
   "whatsapp.Settings": "Ayarlar",
   "whatsapp.LinkedDevices": "Bağlı Cihazlar",

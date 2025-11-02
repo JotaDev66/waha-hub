@@ -126,6 +126,8 @@
   "apps.chatwoot.commands.tooltip": "Выберите, какие команды доступны в чате интеграции WhatsApp. Отключите те, которые не должны выполнять агенты.",
   "apps.chatwoot.commands.server.on": "🔧 Сервер: Вкл.",
   "apps.chatwoot.commands.server.off": "🔧 Сервер: Выкл.",
+  "apps.chatwoot.commands.queue.on": "🧩 Очередь: Вкл.",
+  "apps.chatwoot.commands.queue.off": "🧩 Очередь: Выкл.",
   "whatsapp.MoreOptions": "Дополнительные опции",
   "whatsapp.Settings": "Настройки",
   "whatsapp.LinkedDevices": "Связанные устройства",

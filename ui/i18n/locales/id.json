@@ -126,6 +126,8 @@
   "apps.chatwoot.commands.tooltip": "Pilih perintah mana yang tersedia di Chat Integrasi WhatsApp. Nonaktifkan perintah yang tidak ingin dieksekusi oleh agen.",
   "apps.chatwoot.commands.server.on": "🔧 Server: Aktif",
   "apps.chatwoot.commands.server.off": "🔧 Server: Nonaktif",
+  "apps.chatwoot.commands.queue.on": "🧩 Antrian: Aktif",
+  "apps.chatwoot.commands.queue.off": "🧩 Antrian: Nonaktif",
   "whatsapp.MoreOptions": "Opsi Lainnya",
   "whatsapp.Settings": "Pengaturan",
   "whatsapp.LinkedDevices": "Perangkat Tertaut",

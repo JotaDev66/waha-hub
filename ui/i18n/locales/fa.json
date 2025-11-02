@@ -126,6 +126,8 @@
   "apps.chatwoot.commands.tooltip": "انتخاب کنید کدام دستورات در گفتگوی یکپارچه‌سازی واتساپ در دسترس باشند. دستوراتی را که نمی‌خواهید نمایندگان اجرا کنند غیرفعال کنید.",
   "apps.chatwoot.commands.server.on": "🔧 سرور: روشن",
   "apps.chatwoot.commands.server.off": "🔧 سرور: خاموش",
+  "apps.chatwoot.commands.queue.on": "🧩 صف: روشن",
+  "apps.chatwoot.commands.queue.off": "🧩 صف: خاموش",
   "whatsapp.MoreOptions": "گزینه‌های بیشتر",
   "whatsapp.Settings": "تنظیمات",
   "whatsapp.LinkedDevices": "دستگاه‌های متصل",

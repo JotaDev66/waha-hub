@@ -130,6 +130,8 @@
   "apps.chatwoot.commands.tooltip": "Choose which commands are available in WhatsApp Integration Chat. Disable any you don't want agents to execute.",
   "apps.chatwoot.commands.server.on": "\uD83D\uDD27 Server: On",
   "apps.chatwoot.commands.server.off": "\uD83D\uDD27 Server: Off",
+  "apps.chatwoot.commands.queue.on": "\uD83E\uDDE9 Queue: On",
+  "apps.chatwoot.commands.queue.off": "\uD83E\uDDE9 Queue: Off",
   "whatsapp.MoreOptions": "More Options",
   "whatsapp.Settings": "Settings",
   "whatsapp.LinkedDevices": "Linked Devices",

@@ -126,6 +126,8 @@
   "apps.chatwoot.commands.tooltip": "Wählen Sie, welche Befehle im WhatsApp-Integrationschat verfügbar sind. Deaktivieren Sie jene, die Agenten nicht ausführen sollen.",
   "apps.chatwoot.commands.server.on": "🔧 Server: Ein",
   "apps.chatwoot.commands.server.off": "🔧 Server: Aus",
+  "apps.chatwoot.commands.queue.on": "🧩 Warteschlange: Ein",
+  "apps.chatwoot.commands.queue.off": "🧩 Warteschlange: Aus",
   "whatsapp.MoreOptions": "Weitere Optionen",
   "whatsapp.Settings": "Einstellungen",
   "whatsapp.LinkedDevices": "Verknüpfte Geräte",

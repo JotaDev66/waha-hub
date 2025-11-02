@@ -48,6 +48,7 @@ const defaults: ChatWootAppConfig = {
   templates: {},
   commands: {
     server: true,
+    queue: true,
   },
   conversations: {
     sort: 'created_newest' as ConversationSort,
@@ -301,13 +302,20 @@ async function loadLocales() {
     </h4>
 
     <div class="field">
-      <div>
+      <div class="flex flex-wrap align-items-center gap-2">
         <ToggleButton
             v-model="config.commands.server"
             onIcon="pi pi-check"
             offIcon="pi pi-times"
             :onLabel="t('apps.chatwoot.commands.server.on')"
             :offLabel="t('apps.chatwoot.commands.server.off')"
+        />
+        <ToggleButton
+            v-model="config.commands.queue"
+            onIcon="pi pi-check"
+            offIcon="pi pi-times"
+            :onLabel="t('apps.chatwoot.commands.queue.on')"
+            :offLabel="t('apps.chatwoot.commands.queue.off')"
         />
       </div>
     </div>

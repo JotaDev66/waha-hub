@@ -126,6 +126,8 @@
   "apps.chatwoot.commands.tooltip": "ਚੁਣੋ ਕਿ WhatsApp ਇੰਟੀਗ੍ਰੇਸ਼ਨ ਚੈਟ ਵਿੱਚ ਕਿਹੜੀਆਂ ਕਮਾਂਡਾਂ ਉਪਲਬਧ ਹੋਣ। ਉਹ ਕਮਾਂਡਾਂ ਅਯੋਗ ਕਰੋ ਜੋ ਤੁਸੀਂ ਏਜੰਟਾਂ ਤੋਂ ਚਲਾਉਣ ਨਹੀਂ ਚਾਹੁੰਦੇ।",
   "apps.chatwoot.commands.server.on": "🔧 ਸਰਵਰ: ਚਾਲੂ",
   "apps.chatwoot.commands.server.off": "🔧 ਸਰਵਰ: ਬੰਦ",
+  "apps.chatwoot.commands.queue.on": "🧩 ਕਤਾਰ: ਚਾਲੂ",
+  "apps.chatwoot.commands.queue.off": "🧩 ਕਤਾਰ: ਬੰਦ",
   "whatsapp.MoreOptions": "ਹੋਰ ਵਿਕਲਪ",
   "whatsapp.Settings": "ਸੈਟਿੰਗਾਂ",
   "whatsapp.LinkedDevices": "ਲਿੰਕ ਕੀਤੇ ਡਿਵਾਈਸ",

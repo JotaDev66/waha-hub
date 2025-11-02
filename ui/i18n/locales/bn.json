@@ -126,6 +126,8 @@
   "apps.chatwoot.commands.tooltip": "WhatsApp ইন্টিগ্রেশন চ্যাটে কোন কমান্ডগুলি উপলব্ধ থাকবে তা নির্বাচন করুন। যেগুলো এজেন্টদের কার্যকর করতে চান না সেগুলো নিষ্ক্রিয় করুন।",
   "apps.chatwoot.commands.server.on": "🔧 সার্ভার: চালু",
   "apps.chatwoot.commands.server.off": "🔧 সার্ভার: বন্ধ",
+  "apps.chatwoot.commands.queue.on": "🧩 কিউ: চালু",
+  "apps.chatwoot.commands.queue.off": "🧩 কিউ: বন্ধ",
   "whatsapp.MoreOptions": "আরও অপশন",
   "whatsapp.Settings": "সেটিংস",
   "whatsapp.LinkedDevices": "লিঙ্কড ডিভাইস",
