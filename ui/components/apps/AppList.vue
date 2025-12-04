@@ -6,6 +6,7 @@ import AppEdit from './AppEdit.vue';
 import useShowToastOnResult from '../../composables/useShowToastOnResult';
 import { generateRandomId } from '../../utils/ids';
 import ChatWootLabel from '../common/ChatWootLabel.vue';
+import CallsLabel from '../common/CallsLabel.vue';
 import { useI18n } from 'vue-i18n';
 
 const toast = useToast();
@@ -72,7 +73,7 @@ function openNewApp() {
   selectedApp.value = {
     id: generateAppId(),
     session: props.session.name,
-    app: "chatwoot",
+    app: "",
     config: {},
     enabled: true,
   };
@@ -172,6 +173,8 @@ function getAppTypeLabel(appType: string) {
   switch (appType) {
     case 'chatwoot':
       return 'ChatWoot';
+    case 'calls':
+      return '📞 Calls';
     default:
       return appType;
   }
@@ -218,6 +221,7 @@ function getAppTypeLabel(appType: string) {
       <Column field="app" :header="t('apps.appType')">
         <template #body="{ data }">
           <ChatWootLabel v-if="data.app === 'chatwoot'" />
+          <CallsLabel v-else-if="data.app === 'calls'" />
           <template v-else>{{ getAppTypeLabel(data.app) }}</template>
         </template>
       </Column>

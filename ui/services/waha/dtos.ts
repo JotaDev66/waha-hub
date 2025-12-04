@@ -134,3 +134,13 @@ export interface ChatWootConversationsConfig {
     // optional: null means filter is off
     status?: ConversationStatus[] | null;
 }
+
+export interface CallsAppChannelConfig {
+    reject: boolean;
+    message?: string;
+}
+
+export interface CallsAppConfig {
+    dm: CallsAppChannelConfig;
+    group: CallsAppChannelConfig;
+}

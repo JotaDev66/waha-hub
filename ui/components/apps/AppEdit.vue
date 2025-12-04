@@ -3,10 +3,13 @@ import { ref, computed, watch } from 'vue';
 import { useServerStore } from '../../stores/useServerStore';
 import { App } from '../../services/waha/dtos';
 import AppConfigChatWoot from './AppConfigChatWoot.vue';
+import AppConfigCalls from './AppConfigCalls.vue';
 import AppFAQChatWoot from './AppFAQChatWoot.vue';
+import AppFAQCalls from './AppFAQCalls.vue';
 import useShowToastOnResult from '../../composables/useShowToastOnResult';
 import { generateRandomId } from '../../utils/ids';
 import ChatWootLabel from '../common/ChatWootLabel.vue';
+import CallsLabel from '../common/CallsLabel.vue';
 import { useI18n } from 'vue-i18n';
 
 const { t } = useI18n();
@@ -72,8 +75,26 @@ const appTypes = ref([
     name: 'ChatWoot', 
     value: 'chatwoot',
     label: 'chatwoot' // Used for custom template
+  },
+  {
+    name: '📞 Calls',
+    value: 'calls',
+    label: 'calls' // Used for custom template
   }
 ]);
+
+watch(
+  () => app.value?.app,
+  (type, prevType) => {
+    if (!type || type === prevType) {
+      return;
+    }
+    app.value = {
+      ...app.value,
+      config: {},
+    } as App;
+  },
+);
 
 const submitted = ref(false);
 
@@ -160,6 +181,8 @@ function cancel() {
           <template #value="slotProps">
             <div v-if="slotProps.value">
               <ChatWootLabel v-if="slotProps.value === 'chatwoot'" />
+              <CallsLabel v-else-if="slotProps.value === 'calls'" />
+              <span v-else>{{ slotProps.value }}</span>
             </div>
             <span v-else>
               {{ slotProps.placeholder }}
@@ -167,6 +190,8 @@ function cancel() {
           </template>
           <template #option="slotProps">
             <ChatWootLabel v-if="slotProps.option.value === 'chatwoot'" />
+            <CallsLabel v-else-if="slotProps.option.value === 'calls'" />
+            <span v-else>{{ slotProps.option.name }}</span>
           </template>
         </Dropdown>
         <small class="p-error" v-if="submitted && !app.app">{{ t('apps.appTypeRequired') }}</small>
@@ -186,12 +211,17 @@ function cancel() {
       </div>
 
       <div class="field" v-if="app.app">
-        <label><b>{{ t('apps.appFAQ') }}</b></label>
-        <AppFAQChatWoot
-          v-if="app.app === 'chatwoot'"
-          :app="app"
-          :session="app.session || ''"
-        />
+        <div v-if="app.app === 'chatwoot'">
+          <label><b>{{ t('apps.appFAQ') }}</b></label>
+          <AppFAQChatWoot
+            :app="app"
+            :session="app.session || ''"
+          />
+        </div>
+        <div v-else-if="app.app === 'calls'">
+          <label><b>{{ t('apps.appFAQ') }}</b></label>
+          <AppFAQCalls />
+        </div>
 
         <label><b>{{ t('apps.appConfiguration') }}</b></label>
         <div class="card app-config">
@@ -199,6 +229,11 @@ function cancel() {
             v-if="app.app === 'chatwoot'" 
             v-model="app.config" 
             :server="server"
+            :submitted="submitted"
+          />
+          <AppConfigCalls
+            v-else-if="app.app === 'calls'"
+            v-model="app.config"
             :submitted="submitted"
           />
         </div>
