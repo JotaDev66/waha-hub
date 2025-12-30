@@ -29,12 +29,17 @@ const server = computed(() => {
   return store.getServer(session.value.server)
 })
 
+const isGOWS = computed(() => server.value?.version?.engine === 'GOWS')
 const isNOWEB = computed(() => server.value?.version?.engine === 'NOWEB')
 const isWEBJS = computed(() => server.value?.version?.engine === 'WEBJS')
 
 const metadataKeyValue = ref([])
 
+const clientDeviceOptions = ["Mac OS", "Windows", "Android", "Ubuntu"]
+const clientBrowserOptions = ["Chrome", "Firefox", "IE", "Opera", "Safari"]
+
 const proxyEnabled = ref(!!session.value.config?.proxy?.server)
+const clientEnabled = ref(session.value.config?.client != null)
 const chatsFilterEnabled = ref(session.value.config?.ignore != null)
 const includeStatus = ref(!session.value.config?.ignore?.status)
 const includeGroups = ref(!session.value.config?.ignore?.groups)
@@ -43,12 +48,24 @@ const includeBroadcast = ref(!session.value.config?.ignore?.broadcast)
 
 watch(session, async (newSession, _) => {
   proxyEnabled.value = !!newSession?.config?.proxy?.server
+  clientEnabled.value = newSession?.config?.client != null
   metadataKeyValue.value = convertKeyValueToList(newSession.config?.metadata)
   chatsFilterEnabled.value = newSession?.config?.ignore != null
   includeStatus.value = !newSession?.config?.ignore?.status
   includeGroups.value = !newSession?.config?.ignore?.groups
   includeChannels.value = !newSession?.config?.ignore?.channels
   includeBroadcast.value = !newSession?.config?.ignore?.broadcast
+})
+watch(clientEnabled, (enabled) => {
+  if (!session.value?.config) {
+    return
+  }
+  if (enabled && !session.value.config.client) {
+    session.value.config.client = {}
+  }
+  if (!enabled) {
+    session.value.config.client = null
+  }
 })
 const submitted = ref(false);
 const loading = ref(false);
@@ -57,6 +74,11 @@ const sessionConfig = computed(
       const config = lodash.cloneDeep(session.value.config)
       if (!proxyEnabled.value) {
         config.proxy = undefined
+      }
+      if (!clientEnabled.value) {
+        config.client = null
+      } else if (!config.client) {
+        config.client = {}
       }
       if (chatsFilterEnabled.value){
         config.ignore = {
@@ -183,6 +205,10 @@ async function copyRequest(event) {
       </InlineMessage>
     </div>
 
+    <div class="mb-3">
+      <h5>{{ t('sessions.sessionSection') }}</h5>
+    </div>
+
     <div class="field">
       <label for="server">{{ t('sessions.server') }}</label>
       <ServerDropdown
@@ -206,6 +232,72 @@ async function copyRequest(event) {
           :placeholder="t('sessions.sessionIdPlaceholder')"
           :disabled="!modeNew"
       />
+    </div>
+
+    <div class="mb-4">
+      <div class="field flex justify-content-between align-items-center">
+        <ToggleButton
+            v-model="clientEnabled"
+            id="client"
+            :onLabel="t('sessions.clientOn')"
+            :offLabel="t('sessions.clientOff')"
+        >
+          <template #icon>
+            <font-awesome-icon icon="fa-solid fa-desktop" class="mr-2"/>
+          </template>
+        </ToggleButton>
+      </div>
+      <div v-if="clientEnabled" class="card mb-4">
+        <div class="mb-3" v-if="isGOWS">
+          <InlineMessage severity="warn">
+            {{ t('sessions.gowsClientConfigWarning.1') }}
+            <br>
+            {{ t('sessions.gowsClientConfigWarning.2') }}
+          </InlineMessage>
+        </div>
+        <div class="flex gap-3">
+          <div class="field w-full">
+            <label for="client-device-name">
+              {{ t('sessions.clientDeviceName') }}&nbsp;
+              <i v-tooltip="t('sessions.clientDeviceNameTooltip')" class="pi pi-info-circle"></i>
+            </label>
+            <Dropdown
+                id="client-device-name"
+                v-model="session.config.client.deviceName"
+                editable
+                :options="clientDeviceOptions"
+                :placeholder="t('sessions.clientDeviceNamePlaceholder')"
+                class="w-full"
+            />
+          </div>
+          <div class="field w-full">
+            <label for="client-browser-name">
+              {{ t('sessions.clientBrowserName') }}&nbsp;
+              <i v-tooltip="t('sessions.clientBrowserNameTooltip')" class="pi pi-info-circle"></i>
+            </label>
+            <Dropdown
+                id="client-browser-name"
+                v-model="session.config.client.browserName"
+                editable
+                :options="clientBrowserOptions"
+                :placeholder="t('sessions.clientBrowserNamePlaceholder')"
+                class="w-full"
+            />
+          </div>
+        </div>
+        <div class="mt-3">
+          <small class="text-color-secondary">
+            {{ t('sessions.linkedDevicePreviewLabelPrefix') }}
+            <b>{{ t('sessions.linkedDevicePreviewLabelLinkedDevices') }}</b>
+          </small>
+        </div>
+        <div class="mt-2">
+          <LinkedDevice
+              :device-name="session.config.client.deviceName"
+              :browser-name="session.config.client.browserName"
+          />
+        </div>
+      </div>
     </div>
 
     <div class="mb-4" v-if="isNOWEB">

@@ -31,6 +31,11 @@ export interface WebjsConfig {
     tagsEventsOn: boolean,
 }
 
+export interface ClientSessionConfig {
+    deviceName?: string;
+    browserName?: string;
+}
+
 export interface IgnoreConfig {
     status?: boolean,
     groups?: boolean,
@@ -44,6 +49,7 @@ export interface SessionConfig {
     proxy: any;
     noweb?: NowebConfig;
     webjs?: WebjsConfig;
+    client?: ClientSessionConfig | null;
     ignore?: IgnoreConfig;
 }
 
