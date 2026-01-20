@@ -1,0 +1,4 @@
+- It's vue app using **primevue v3** components https://v3.primevue.org/
+  - You can find source code and docs in `~/git/primevue` - `v3` branch
+- Try to use "custom" styles and custom components as less possible - primevue style are great
+- Check `openapi.json` for API references we have and dto
