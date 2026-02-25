@@ -21,6 +21,7 @@ onMounted(() => {
 
 <template>
   <ContactChip
+      v-if="props.session?.me?.id"
       :id="props.session?.me?.id"
       :id2="props.session?.me?.lid"
       :name="props.session?.me?.pushName"
