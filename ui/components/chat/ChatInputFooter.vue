@@ -153,7 +153,7 @@ async function sendAttachments() {
             text
             rounded
             size="small"
-            :disabled="disabled"
+            :disabled="disabled || loading"
             @click="menuRef.toggle($event)"
             style="position: absolute; right: 0.25rem; top: 50%; transform: translateY(-50%)"
         />
