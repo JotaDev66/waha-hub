@@ -243,9 +243,20 @@ onUnmounted(() => {
                     class="media-preview-audio"
                 />
                 <!-- File / unknown type -->
-                <div v-else class="flex align-items-center gap-2 p-2">
-                  <i class="pi pi-file" style="font-size: 2rem"></i>
-                  <span v-if="mediaFilename" class="p-text-secondary" style="word-break: break-all">{{ mediaFilename }}</span>
+                <div v-else class="flex flex-column align-items-center gap-1 p-2">
+                  <div class="flex align-items-center gap-2">
+                    <i class="pi pi-file" style="font-size: 2rem"></i>
+                    <span v-if="mediaFilename" class="p-text-secondary" style="word-break: break-all">{{ mediaFilename }}</span>
+                  </div>
+                  <Button
+                      v-if="!mediaBlobUrl"
+                      icon="pi pi-download"
+                      size="small"
+                      outlined
+                      :loading="mediaLoading"
+                      :label="t('chat.message.download')"
+                      @click="downloadMedia"
+                  />
                 </div>
               </div>
               <!-- No thumbnail yet: show download button placeholder -->
