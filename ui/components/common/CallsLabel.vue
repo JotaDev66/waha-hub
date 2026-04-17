@@ -1,11 +1,12 @@
 <script setup>
-// Display label for the Calls app with a phone emoji
+import { useI18n } from 'vue-i18n';
+const { t } = useI18n();
 </script>
 
 <template>
   <span class="calls-label">
     <span class="emoji">📞</span>
-    <span>Calls</span>
+    <span>{{ t('apps.calls.name') }}</span>
   </span>
 </template>
 

@@ -70,14 +70,14 @@ const enabled = computed({
   }
 });
 
-const appTypes = ref([
-  { 
-    name: 'ChatWoot', 
+const appTypes = computed(() => [
+  {
+    name: 'ChatWoot',
     value: 'chatwoot',
     label: 'chatwoot' // Used for custom template
   },
   {
-    name: '📞 Calls',
+    name: `📞 ${t('apps.calls.name')}`,
     value: 'calls',
     label: 'calls' // Used for custom template
   }

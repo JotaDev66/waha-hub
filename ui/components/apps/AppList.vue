@@ -178,7 +178,7 @@ function getAppTypeLabel(appType: string) {
     case 'chatwoot':
       return 'ChatWoot';
     case 'calls':
-      return '📞 Calls';
+      return `📞 ${t('apps.calls.name')}`;
     default:
       return appType;
   }
