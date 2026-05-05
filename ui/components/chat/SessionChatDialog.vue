@@ -8,6 +8,9 @@ import ChatInputFooter from "./ChatInputFooter.vue";
 import {ClientStatus, WebSocketClient} from "../../services/WebSocketService";
 import {ref} from "vue";
 import WebSocketStatus from "../events/WebSocketStatus.vue";
+import {useI18n} from "vue-i18n";
+
+const {t} = useI18n();
 
 const visible = defineModel("visible");
 const session = defineModel("session");
@@ -229,7 +232,7 @@ async function sendMedia(type, file, base64, caption) {
   } catch (e) {
     toast.add({
       severity: 'error',
-      summary: $t('chat.sendFailedTitle'),
+      summary: t('chat.sendFailedTitle'),
       detail: e?.message || String(e),
       life: 5000,
     })
@@ -250,8 +253,8 @@ async function sendText(text) {
     console.warn('Failed to mark chat as read before sending text', e)
     toast.add({
       severity: 'warn',
-      summary: $t('chat.readFailedTitle'),
-      detail: $t('chat.readFailedDescription'),
+      summary: t('chat.readFailedTitle'),
+      detail: t('chat.readFailedDescription'),
       life: 4000,
     })
   }
@@ -262,7 +265,7 @@ async function sendText(text) {
   } catch (e) {
     toast.add({
       severity: 'error',
-      summary: $t('chat.sendFailedTitle'),
+      summary: t('chat.sendFailedTitle'),
       detail: e?.message || String(e),
       life: 5000,
     })
@@ -300,7 +303,7 @@ const showPromo = ref(false)
       <div class="m-auto pb-2">
         <div class="text-center">
           <a href="#" @click="showPromo = true">
-            <b>{{ $t('chat.aboutChatUI') }}</b>
+            <b>{{ t('chat.aboutChatUI') }}</b>
           </a>
         </div>
         <ChatPromo
