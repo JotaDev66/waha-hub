@@ -214,17 +214,26 @@ function clickOnChat(chat) {
 async function sendMedia(type, file, base64, caption) {
   if (!selectedChat.value) return
   const mediaFile = { data: base64, mimetype: file.type, filename: file.name }
-  if (type === 'image') {
-    await store.sendImage(session.value.server.id, session.value.name, selectedChat.value.id, mediaFile, caption)
-  } else if (type === 'video') {
-    await store.sendVideo(session.value.server.id, session.value.name, selectedChat.value.id, mediaFile, caption)
-  } else if (type === 'audio') {
-    await store.sendVoice(session.value.server.id, session.value.name, selectedChat.value.id, mediaFile)
-  } else {
-    await store.sendFile(session.value.server.id, session.value.name, selectedChat.value.id, mediaFile, caption)
+  try {
+    if (type === 'image') {
+      await store.sendImage(session.value.server.id, session.value.name, selectedChat.value.id, mediaFile, caption)
+    } else if (type === 'video') {
+      await store.sendVideo(session.value.server.id, session.value.name, selectedChat.value.id, mediaFile, caption)
+    } else if (type === 'audio') {
+      await store.sendVoice(session.value.server.id, session.value.name, selectedChat.value.id, mediaFile)
+    } else {
+      await store.sendFile(session.value.server.id, session.value.name, selectedChat.value.id, mediaFile, caption)
+    }
+    await sleep(1000)
+    fetchMessages()
+  } catch (e) {
+    toast.add({
+      severity: 'error',
+      summary: $t('chat.sendFailedTitle'),
+      detail: e?.message || String(e),
+      life: 5000,
+    })
   }
-  await sleep(1000)
-  fetchMessages()
 }
 
 async function sendText(text) {
@@ -246,9 +255,18 @@ async function sendText(text) {
       life: 4000,
     })
   }
-  await store.sendText(session.value.server.id, session.value.name, selectedChat.value.id, text)
-  await sleep(1000)
-  fetchMessages()
+  try {
+    await store.sendText(session.value.server.id, session.value.name, selectedChat.value.id, text)
+    await sleep(1000)
+    fetchMessages()
+  } catch (e) {
+    toast.add({
+      severity: 'error',
+      summary: $t('chat.sendFailedTitle'),
+      detail: e?.message || String(e),
+      life: 5000,
+    })
+  }
 }
 
 const showPromo = ref(false)
