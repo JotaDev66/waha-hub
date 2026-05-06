@@ -4,12 +4,15 @@ import { useServerStore } from '../../stores/useServerStore';
 import { App } from '../../services/waha/dtos';
 import AppConfigChatWoot from './AppConfigChatWoot.vue';
 import AppConfigCalls from './AppConfigCalls.vue';
+import AppConfigMcp from './AppConfigMcp.vue';
 import AppFAQChatWoot from './AppFAQChatWoot.vue';
 import AppFAQCalls from './AppFAQCalls.vue';
+import AppFAQMcp from './AppFAQMcp.vue';
 import useShowToastOnResult from '../../composables/useShowToastOnResult';
 import { generateRandomId } from '../../utils/ids';
 import ChatWootLabel from '../common/ChatWootLabel.vue';
 import CallsLabel from '../common/CallsLabel.vue';
+import McpLabel from '../common/McpLabel.vue';
 import { useI18n } from 'vue-i18n';
 
 const { t } = useI18n();
@@ -74,12 +77,17 @@ const appTypes = computed(() => [
   {
     name: 'ChatWoot',
     value: 'chatwoot',
-    label: 'chatwoot' // Used for custom template
+    label: 'chatwoot'
   },
   {
     name: `📞 ${t('apps.calls.name')}`,
     value: 'calls',
-    label: 'calls' // Used for custom template
+    label: 'calls'
+  },
+  {
+    name: `🤖 ${t('apps.mcp.name')}`,
+    value: 'mcp',
+    label: 'mcp'
   }
 ]);
 
@@ -182,6 +190,7 @@ function cancel() {
             <div v-if="slotProps.value">
               <ChatWootLabel v-if="slotProps.value === 'chatwoot'" />
               <CallsLabel v-else-if="slotProps.value === 'calls'" />
+              <McpLabel v-else-if="slotProps.value === 'mcp'" />
               <span v-else>{{ slotProps.value }}</span>
             </div>
             <span v-else>
@@ -191,6 +200,7 @@ function cancel() {
           <template #option="slotProps">
             <ChatWootLabel v-if="slotProps.option.value === 'chatwoot'" />
             <CallsLabel v-else-if="slotProps.option.value === 'calls'" />
+            <McpLabel v-else-if="slotProps.option.value === 'mcp'" />
             <span v-else>{{ slotProps.option.name }}</span>
           </template>
         </Dropdown>
@@ -222,17 +232,26 @@ function cancel() {
           <label><b>{{ t('apps.appFAQ') }}</b></label>
           <AppFAQCalls />
         </div>
+        <div v-else-if="app.app === 'mcp'">
+          <label><b>{{ t('apps.appFAQ') }}</b></label>
+          <AppFAQMcp :app="app" :server="server" />
+        </div>
 
         <label><b>{{ t('apps.appConfiguration') }}</b></label>
         <div class="card app-config">
-          <AppConfigChatWoot 
-            v-if="app.app === 'chatwoot'" 
-            v-model="app.config" 
+          <AppConfigChatWoot
+            v-if="app.app === 'chatwoot'"
+            v-model="app.config"
             :server="server"
             :submitted="submitted"
           />
           <AppConfigCalls
             v-else-if="app.app === 'calls'"
+            v-model="app.config"
+            :submitted="submitted"
+          />
+          <AppConfigMcp
+            v-else-if="app.app === 'mcp'"
             v-model="app.config"
             :submitted="submitted"
           />

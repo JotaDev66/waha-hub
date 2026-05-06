@@ -191,3 +191,9 @@ export interface CallsAppConfig {
     dm: CallsAppChannelConfig;
     group: CallsAppChannelConfig;
 }
+
+export interface McpAppConfig {
+    actions?: SessionActions | null;
+    key_id?: string;
+    key?: string;
+}

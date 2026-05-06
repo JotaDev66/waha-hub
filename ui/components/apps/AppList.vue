@@ -7,6 +7,7 @@ import useShowToastOnResult from '../../composables/useShowToastOnResult';
 import { generateRandomId } from '../../utils/ids';
 import ChatWootLabel from '../common/ChatWootLabel.vue';
 import CallsLabel from '../common/CallsLabel.vue';
+import McpLabel from '../common/McpLabel.vue';
 import { useI18n } from 'vue-i18n';
 
 const toast = useToast();
@@ -131,13 +132,22 @@ function generateAppId() {
   return generateRandomId();
 }
 
+function prepareAppPayload(app: App): App {
+  if (app.app !== 'mcp' || !app.config) return app;
+  const { key_id, key, ...config } = app.config;
+  return { ...app, config };
+}
+
 async function saveApp(app: App) {
   try {
     saving.value = true;
     const appTypeLabel = getAppTypeLabel(app.app);
+    const reopenAfterCreate = isNewApp.value && app.app === 'mcp';
+    const payload = prepareAppPayload(app);
+
     if (isNewApp.value) {
       await req(
-        store.createApp(props.server.id, app),
+        store.createApp(props.server.id, payload),
         undefined,
         t('apps.failedToCreate')
       );
@@ -149,7 +159,7 @@ async function saveApp(app: App) {
       });
     } else {
       await req(
-        store.updateApp(props.server.id, app),
+        store.updateApp(props.server.id, payload),
         undefined,
         t('apps.failedToUpdate')
       );
@@ -160,8 +170,19 @@ async function saveApp(app: App) {
         life: 3000
       });
     }
+
     await loadApps();
-    // Close the dialog after successful save
+
+    if (reopenAfterCreate) {
+      const created = apps.value.find(a => a.id === app.id);
+      if (created) {
+        selectedApp.value = { ...created };
+        isNewApp.value = false;
+        // dialog stays open — content updates to show key
+        return true;
+      }
+    }
+
     appDialog.value = false;
     return true;
   } catch (error) {
@@ -172,13 +193,14 @@ async function saveApp(app: App) {
   }
 }
 
-// This function is used for text-only representation (e.g., in toast messages)
 function getAppTypeLabel(appType: string) {
   switch (appType) {
     case 'chatwoot':
       return 'ChatWoot';
     case 'calls':
       return `📞 ${t('apps.calls.name')}`;
+    case 'mcp':
+      return `🤖 ${t('apps.mcp.name')}`;
     default:
       return appType;
   }
@@ -226,6 +248,7 @@ function getAppTypeLabel(appType: string) {
         <template #body="{ data }">
           <ChatWootLabel v-if="data.app === 'chatwoot'" />
           <CallsLabel v-else-if="data.app === 'calls'" />
+          <McpLabel v-else-if="data.app === 'mcp'" />
           <template v-else>{{ getAppTypeLabel(data.app) }}</template>
         </template>
       </Column>
