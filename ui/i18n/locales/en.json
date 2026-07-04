@@ -18,6 +18,7 @@
   "chat.callStartedTitle": "Call started",
   "chat.callFailedTitle": "Call action failed",
   "chat.callEndedTitle": "Call ended",
+  "chat.callAudioFailedTitle": "Call audio failed",
   "chat.loadMoreMessages": "Load More Messages",
   "chat.noMoreMessages": "No more messages",
   "chat.showMoreChats": "Show More Chats",

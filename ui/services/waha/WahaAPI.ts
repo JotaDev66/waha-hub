@@ -341,6 +341,15 @@ export class WahaAPI {
         });
     }
 
+    webrtcCall(serverId: ServerId, sessionName: string, id: string, sdpOffer: string): Promise<{ sdpAnswer: string }> {
+        return this.api.call(serverId, {
+            method: 'POST',
+            uri: `/api/${sessionName}/calls/${id}/webrtc`,
+            params: {},
+            body: {sdpOffer: sdpOffer},
+        });
+    }
+
     getServerVersion(serverId: ServerId): Promise<any> {
         return this.api.call(serverId, {
             method: 'GET',

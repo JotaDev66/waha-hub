@@ -7,6 +7,7 @@ import ChatList from "./ChatList.vue";
 import ChatInputFooter from "./ChatInputFooter.vue";
 import Dialer from "./Dialer.vue";
 import IncomingCallDialog from "./IncomingCallDialog.vue";
+import {openCallAudio} from "../../services/callAudio";
 import {ClientStatus, WebSocketClient} from "../../services/WebSocketService";
 import {ref} from "vue";
 import WebSocketStatus from "../events/WebSocketStatus.vue";
@@ -298,6 +299,47 @@ const callDuration = ref(0)
 let callTimer = null
 const incoming = ref({visible: false, from: '', id: ''})
 
+const audioEl = ref(null)
+const callAudio = ref(null)
+
+async function setupAudio(callId) {
+  if (!callId) {
+    return
+  }
+  try {
+    callAudio.value = await openCallAudio(async (sdpOffer) => {
+      const res = await store.webrtcCall(session.value.server.id, session.value.name, callId, sdpOffer)
+      return res.sdpAnswer
+    })
+    await nextTick()
+    if (audioEl.value) {
+      audioEl.value.srcObject = callAudio.value.remoteStream
+      try {
+        await audioEl.value.play()
+      } catch (e) {
+        // autoplay may require a user gesture; the call button click covers it
+      }
+    }
+  } catch (e) {
+    toast.add({
+      severity: 'error',
+      summary: t('chat.callAudioFailedTitle'),
+      detail: e?.message || String(e),
+      life: 5000,
+    })
+  }
+}
+
+function teardownAudio() {
+  if (callAudio.value) {
+    callAudio.value.close()
+    callAudio.value = null
+  }
+  if (audioEl.value) {
+    audioEl.value.srcObject = null
+  }
+}
+
 function ensureChatId(number) {
   const value = String(number).trim()
   if (value.includes('@')) {
@@ -323,6 +365,7 @@ function stopCallTimer() {
 
 function resetCall() {
   stopCallTimer()
+  teardownAudio()
   callState.value = 'idle'
   activeCallId.value = null
   activePeer.value = ''
@@ -339,6 +382,7 @@ async function placeCall(target) {
     activePeer.value = chatId
     callState.value = 'calling'
     dialerVisible.value = true
+    await setupAudio(activeCallId.value)
   } catch (e) {
     toast.add({
       severity: 'error',
@@ -398,7 +442,9 @@ async function acceptIncoming() {
     callState.value = 'active'
     startCallTimer()
     dialerVisible.value = true
+    const acceptedId = incoming.value.id
     incoming.value = {visible: false, from: '', id: ''}
+    await setupAudio(acceptedId)
   } catch (e) {
     toast.add({
       severity: 'error',
@@ -570,6 +616,7 @@ function onCallEvent(name, payload) {
         @accept="acceptIncoming"
         @reject="rejectIncoming"
     />
+    <audio ref="audioEl" autoplay playsinline style="display:none"></audio>
   </Dialog>
 
 </template>
